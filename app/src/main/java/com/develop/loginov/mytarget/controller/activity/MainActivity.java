@@ -1,10 +1,14 @@
 package com.develop.loginov.mytarget.controller.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
             textName.setText(editName.getText().toString());
             viewSwitcher.showNext();
+            hideKeyBoard(this);
             setEnabled(true);
         });
         textName.setOnClickListener(v -> {
@@ -113,5 +118,20 @@ public class MainActivity extends AppCompatActivity {
             fragment.setEnabled(enabled);
         }
     }
+
+    public static void hideKeyBoard(final Activity activity) {
+        if (activity == null)
+            return;
+
+        hideKeyBoard(activity, activity.getWindow().getDecorView().getWindowToken());
+    }
+
+    public static void hideKeyBoard(Context context, IBinder binder) {
+        if (context == null)
+            return;
+        InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(binder, 0);
+    }
+
 
 }

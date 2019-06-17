@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,8 @@ import com.develop.loginov.mytarget.dialog.HelpAnswerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class QuestionFragment extends Fragment {
+
+    private NestedScrollView scrollView;
     private View view;
     private RecyclerView listView;
     private AnswerAdapter adapter;
@@ -62,6 +65,7 @@ public class QuestionFragment extends Fragment {
         this.view = view;
 
         final TextView textQuestion = view.findViewById(R.id.fragment_simple_question__name);
+        scrollView = view.findViewById(R.id.nestedScrollView);
         listView = view.findViewById(R.id.fragment_simple_question__list);
         fab = view.findViewById(R.id.fragment_simple_question__fab);
         buttonDone = view.findViewById(R.id.fragment_simple_question__button_done);
@@ -72,9 +76,14 @@ public class QuestionFragment extends Fragment {
         String[] array = getResources().getStringArray(R.array.answers_sample);
         adapter.setAnswers(array);
         listView.setAdapter(adapter);
-        listView.setLayoutManager(new LinearLayoutManager(getContext(),
-                                                          RecyclerView.VERTICAL,
-                                                          false));
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext(),
+                                                                RecyclerView.VERTICAL,
+                                                                false);
+        lm.setAutoMeasureEnabled(true);
+        listView.setLayoutManager(lm);
+        listView.setNestedScrollingEnabled(false);
+        listView.setHasFixedSize(true);
+
         buttonHelp.setOnClickListener(v -> new HelpAnswerDialog().show(getChildFragmentManager(),
                                                                        "Help"));
         buttonDone.setOnClickListener(v -> {
@@ -109,9 +118,7 @@ public class QuestionFragment extends Fragment {
     public void active() {
         show();
         fab.setVisibility(View.GONE);
-        listView.setVisibility(View.VISIBLE);
-        buttonDone.setVisibility(View.VISIBLE);
-        buttonHelp.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.VISIBLE);
     }
 
 
@@ -119,9 +126,8 @@ public class QuestionFragment extends Fragment {
     public void disactive() {
         show();
         fab.setVisibility(View.VISIBLE);
-        listView.setVisibility(View.GONE);
-        buttonDone.setVisibility(View.GONE);
-        buttonHelp.setVisibility(View.GONE);
+        scrollView.setVisibility(View.GONE);
+
     }
 
     public void setEnabled(boolean enabled) {

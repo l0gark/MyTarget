@@ -12,6 +12,7 @@
     <string name="target_sample">Хочу купить дом на острове на самом северном в мире!</string>
     <string name="next">Продолжить</string>
     <string name="my_target">Моя цель?</string>
+    <string name="answer">Введите ответ</string>
     <string name="done">Готово</string>
     <string name="help">Помощь?</string>
 
@@ -26,4 +27,5 @@
     <string name="help_answer_text">
         Нажмите на элемент списка, измените текст в нём и нажмите на галочку.\n\n
         Когда введёте все 5 ответов нажмите кнопку \nГОТОВО или НАЗАД</string>
+    <string name="ok">ok</string>
 </resources>

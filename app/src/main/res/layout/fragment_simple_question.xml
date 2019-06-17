@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:background="@color/light_purple"
 
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:maxLines="3"
 
             android:minLines="3"
@@ -42,29 +42,48 @@
             android:tint="@android:color/white"
             app:srcCompat="@android:drawable/ic_input_add" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_simple_question__list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/def_margin"
-            android:divider="@color/color_white"
-            android:visibility="gone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/fragment_simple_question__button_done"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/def_margin"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:visibility="gone"
-            android:text="@string/done" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/fragment_simple_question__button_help"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_margin="@dimen/def_margin"
-            android:text="@string/help" />
+            android:isScrollContainer="true"
+            android:measureAllChildren="true"
+            android:paddingBottom="100dp">
+
+            <LinearLayout
+                android:id="@+id/fragment_simple_question__additional_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_simple_question__list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/def_margin"
+                    android:fastScrollEnabled="true"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:splitMotionEvents="false"
+                    android:verticalScrollbarPosition="right" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragment_simple_question__button_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/def_margin"
+                    android:text="@string/done" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragment_simple_question__button_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/def_margin"
+                    android:text="@string/help" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
     </LinearLayout>
 
