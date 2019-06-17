@@ -94,7 +94,7 @@
 
         <fragment
             android:id="@+id/activity_name__question1"
-            android:name="com.develop.loginov.mytarget.controller.fragment.SimpleQuestionFragment"
+            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -112,7 +112,7 @@
 
         <fragment
             android:id="@+id/activity_name__question2"
-            android:name="com.develop.loginov.mytarget.controller.fragment.SimpleQuestionFragment"
+            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -130,7 +130,7 @@
 
         <fragment
             android:id="@+id/activity_name__question3"
-            android:name="com.develop.loginov.mytarget.controller.fragment.SimpleQuestionFragment"
+            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -149,7 +149,7 @@
 
         <fragment
             android:id="@+id/activity_name__question4"
-            android:name="com.develop.loginov.mytarget.controller.fragment.SimpleQuestionFragment"
+            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 

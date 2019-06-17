@@ -13,11 +13,8 @@ import android.widget.ViewSwitcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.develop.loginov.mytarget.R;
-import com.develop.loginov.mytarget.controller.fragment.SimpleQuestionFragment;
+import com.develop.loginov.mytarget.controller.fragment.QuestionFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabOk;
     private ViewSwitcher viewSwitcher;
 
-    private SimpleQuestionFragment[] fragments;
+    private QuestionFragment[] fragments;
     private int activeIndex;
 
     @Override
@@ -43,16 +40,15 @@ public class MainActivity extends AppCompatActivity {
         textName = findViewById(R.id.activity_main__target_name_text);
         editName = findViewById(R.id.activity_main__target_name_edit_text);
 
-        fragments = new SimpleQuestionFragment[4];
-        fragments[0] = (SimpleQuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question1);
-        fragments[1] = (SimpleQuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question2);
-        fragments[2] = (SimpleQuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question3);
-        fragments[3] = (SimpleQuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question4);
+        fragments = new QuestionFragment[4];
+        fragments[0] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question1);
+        fragments[1] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question2);
+        fragments[2] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question3);
+        fragments[3] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question4);
 
         activeIndex = -1;
 
-        String[] array = getResources().getStringArray(R.array.answers_sample);
-        List<String> answers = Arrays.asList(array);
+        String[] answers = getResources().getStringArray(R.array.answers_sample);
         for (int i = 0; i < fragments.length; i++) {
             fragments[i].setAnswers(answers);
             final int x = i;
@@ -61,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                for (final SimpleQuestionFragment fragment : fragments) {
+                for (final QuestionFragment fragment : fragments) {
                     fragment.hide();
                 }
                 activeIndex = x;
@@ -102,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         activeIndex = -1;
-        for (final SimpleQuestionFragment fragment : fragments) {
+        for (final QuestionFragment fragment : fragments) {
             fragment.disactive();
         }
 
@@ -113,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     private void setEnabled(boolean enabled) {
         textAttention.setEnabled(enabled);
         buttonNext.setEnabled(enabled);
-        for (final SimpleQuestionFragment fragment : fragments) {
+        for (final QuestionFragment fragment : fragments) {
             fragment.setEnabled(enabled);
         }
     }

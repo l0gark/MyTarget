@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="def_margin">6dp</dimen>
+    <dimen name="def_big_margin">10dp</dimen>
     <dimen name="def_half_margin">3dp</dimen>
 
     <dimen name="text_size">14sp</dimen>

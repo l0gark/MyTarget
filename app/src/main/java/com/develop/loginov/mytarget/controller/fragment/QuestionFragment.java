@@ -5,35 +5,33 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.develop.loginov.mytarget.AnswerAdapter;
 import com.develop.loginov.mytarget.R;
+import com.develop.loginov.mytarget.dialog.HelpAnswerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.List;
-
-public class SimpleQuestionFragment extends Fragment {
+public class QuestionFragment extends Fragment {
     private View view;
-    private ListView listView;
+    private RecyclerView listView;
+    private AnswerAdapter adapter;
     private FloatingActionButton fab;
     private Button buttonHelp;
     private Button buttonDone;
 
     private String question;
-    private List<String> answers;
 
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
@@ -62,6 +60,7 @@ public class SimpleQuestionFragment extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
+
         final TextView textQuestion = view.findViewById(R.id.fragment_simple_question__name);
         listView = view.findViewById(R.id.fragment_simple_question__list);
         fab = view.findViewById(R.id.fragment_simple_question__fab);
@@ -69,17 +68,26 @@ public class SimpleQuestionFragment extends Fragment {
         buttonHelp = view.findViewById(R.id.fragment_simple_question__button_help);
 
         textQuestion.setText(question);
+        adapter = new AnswerAdapter();
+        String[] array = getResources().getStringArray(R.array.answers_sample);
+        adapter.setAnswers(array);
+        listView.setAdapter(adapter);
+        listView.setLayoutManager(new LinearLayoutManager(getContext(),
+                                                          RecyclerView.VERTICAL,
+                                                          false));
+        buttonHelp.setOnClickListener(v -> new HelpAnswerDialog().show(getChildFragmentManager(),
+                                                                       "Help"));
+        buttonDone.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                getActivity().onBackPressed();
+            }
+        });
+
+
     }
 
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
-        assert getContext() != null;
-        if (listView != null) {
-            final ListAdapter adapter = new ArrayAdapter<>(getContext(),
-                                                           R.layout.simple_text_item,
-                                                           answers);
-            listView.setAdapter(adapter);
-        }
+    public void setAnswers(String[] answers) {
+        adapter.setAnswers(answers);
     }
 
     public void setOnClickListener(final View.OnClickListener onClickListener) {
