@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
 
     android:layout_margin="@dimen/def_half_margin"
     android:orientation="vertical"
@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
 
         <TextView
@@ -35,18 +36,35 @@
             android:id="@+id/fragment_simple_question__fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/def_half_margin"
-            android:layout_marginBottom="@dimen/def_half_margin"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/def_margin"
+            android:layout_marginBottom="@dimen/def_margin"
             android:tint="@android:color/white"
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <ListView
             android:id="@+id/fragment_simple_question__list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/def_margin"
-            android:divider="@color/color_white" />
+            android:divider="@color/color_white"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_simple_question__button_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/def_margin"
+            android:visibility="gone"
+            android:text="@string/done" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_simple_question__button_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_margin="@dimen/def_margin"
+            android:text="@string/help" />
 
     </LinearLayout>
 

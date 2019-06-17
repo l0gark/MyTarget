@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class SimpleQuestionFragment extends Fragment {
     private View view;
     private ListView listView;
     private FloatingActionButton fab;
+    private Button buttonHelp;
+    private Button buttonDone;
 
     private String question;
     private List<String> answers;
@@ -61,7 +64,9 @@ public class SimpleQuestionFragment extends Fragment {
         this.view = view;
         final TextView textQuestion = view.findViewById(R.id.fragment_simple_question__name);
         listView = view.findViewById(R.id.fragment_simple_question__list);
-//        fab = view.findViewById(R.id.fragment_simple_question__fab);
+        fab = view.findViewById(R.id.fragment_simple_question__fab);
+        buttonDone = view.findViewById(R.id.fragment_simple_question__button_done);
+        buttonHelp = view.findViewById(R.id.fragment_simple_question__button_help);
 
         textQuestion.setText(question);
     }
@@ -78,9 +83,8 @@ public class SimpleQuestionFragment extends Fragment {
     }
 
     public void setOnClickListener(final View.OnClickListener onClickListener) {
-        if (onClickListener != null/* && fab != null*/) {
-//            fab.setOnClickListener(onClickListener);
-            view.setOnClickListener(onClickListener);
+        if (onClickListener != null && fab != null) {
+            fab.setOnClickListener(onClickListener);
         }
     }
 
@@ -90,13 +94,30 @@ public class SimpleQuestionFragment extends Fragment {
 
     @SuppressLint("RestrictedApi")
     public void show() {
-//        fab.setVisibility(View.VISIBLE);
         view.setVisibility(View.VISIBLE);
     }
 
     @SuppressLint("RestrictedApi")
     public void active() {
         show();
-//        fab.setVisibility(View.GONE);
+        fab.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
+        buttonDone.setVisibility(View.VISIBLE);
+        buttonHelp.setVisibility(View.VISIBLE);
     }
+
+
+    @SuppressLint("RestrictedApi")
+    public void disactive() {
+        show();
+        fab.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.GONE);
+        buttonDone.setVisibility(View.GONE);
+        buttonHelp.setVisibility(View.GONE);
+    }
+
+    public void setEnabled(boolean enabled) {
+        fab.setEnabled(enabled);
+    }
+
 }

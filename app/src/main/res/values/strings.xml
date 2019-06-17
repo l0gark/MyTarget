@@ -11,6 +11,9 @@
 
     <string name="target_sample">Хочу купить дом на острове на самом северном в мире!</string>
     <string name="next">Продолжить</string>
+    <string name="my_target">Моя цель?</string>
+    <string name="done">Готово</string>
+    <string name="help">Помощь?</string>
 
     <string-array name="answers_sample">
         <item>Будет всё вокруг белое</item>
