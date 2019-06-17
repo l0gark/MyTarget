@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:layout_margin="@dimen/def_half_margin"
+    android:orientation="vertical"
+    app:cardElevation="3dp"
+    tools:context=".controller.fragment.SimpleQuestionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_simple_question__name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_purple"
+
+            android:gravity="center_horizontal"
+            android:maxLines="3"
+
+            android:minLines="3"
+            android:padding="@dimen/def_half_margin"
+
+            android:text="@string/question1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_text_size" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_simple_question__fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/def_half_margin"
+            android:layout_marginBottom="@dimen/def_half_margin"
+            android:layout_gravity="center"
+            android:tint="@android:color/white"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <ListView
+            android:id="@+id/fragment_simple_question__list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/def_margin"
+            android:divider="@color/color_white" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

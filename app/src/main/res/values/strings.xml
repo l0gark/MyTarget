@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MyTarget</string>
+
+    <string name="question1">С чем я останусь, если не достигну желаемого?</string>
+    <string name="question2">Что придёт в мою жизнь, когда я достигну желаемого?</string>
+    <string name="question3">Что не придёт в мою жизнь, если я не достигну желаемого?</string>
+    <string name="question4">Что уйдёт из моей жизни, когда я достигну желаемого?</string>
+
+    <string name="attention_answer">Отвечайте на вопросы внимательно!\n
+        <font fgcolor='#FFFF0000'>Это важно!</font></string>
+
+    <string name="target_sample">Хочу купить дом на острове на самом северном в мире!</string>
+    <string name="next">Продолжить</string>
+
+    <string-array name="answers_sample">
+        <item>Будет всё вокруг белое</item>
+        <item>Буду один</item>
+        <item>Никакой зелени!!!</item>
+        <item>А ещё будут пингвины</item>
+        <item>И белые медведи!!!</item>
+    </string-array>
+</resources>
