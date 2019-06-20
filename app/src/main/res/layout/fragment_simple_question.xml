@@ -43,19 +43,19 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView"
-            android:visibility="gone"
+            android:id="@+id/fragment_simple_question__nested_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:isScrollContainer="true"
             android:measureAllChildren="true"
-            android:paddingBottom="100dp">
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/fragment_simple_question__additional_layout"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/fragment_simple_question__list"
@@ -83,8 +83,6 @@
                     android:text="@string/help" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

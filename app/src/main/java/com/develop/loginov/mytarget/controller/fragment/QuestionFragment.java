@@ -65,7 +65,7 @@ public class QuestionFragment extends Fragment {
         this.view = view;
 
         final TextView textQuestion = view.findViewById(R.id.fragment_simple_question__name);
-        scrollView = view.findViewById(R.id.nestedScrollView);
+        scrollView = view.findViewById(R.id.fragment_simple_question__nested_scroll_view);
         listView = view.findViewById(R.id.fragment_simple_question__list);
         fab = view.findViewById(R.id.fragment_simple_question__fab);
         buttonDone = view.findViewById(R.id.fragment_simple_question__button_done);
