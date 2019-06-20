@@ -39,7 +39,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
         super.onInflate(context, attrs, savedInstanceState);
-        question = "Hello, i'm Vitya";
+        question = "Hello, i'm empty!";
         if (context != null && attrs != null) {
 
             TypedArray typedArray = context.obtainStyledAttributes(attrs,
@@ -95,8 +95,14 @@ public class QuestionFragment extends Fragment {
 
     }
 
-    public void setAnswers(String[] answers) {
-        adapter.setAnswers(answers);
+    public void setAnswers(final String[] answers) {
+        final String[] array = new String[answers.length];
+        System.arraycopy(answers, 0, array, 0, answers.length);
+        adapter.setAnswers(array);
+    }
+
+    public String[] getAnswers() {
+        return adapter.getAnswers();
     }
 
     public void setOnClickListener(final View.OnClickListener onClickListener) {
@@ -123,7 +129,7 @@ public class QuestionFragment extends Fragment {
 
 
     @SuppressLint("RestrictedApi")
-    public void disactive() {
+    public void disActive() {
         show();
         fab.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.GONE);

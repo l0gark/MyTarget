@@ -1,14 +1,11 @@
 package com.develop.loginov.mytarget.controller.activity;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,13 +17,14 @@ import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.controller.fragment.QuestionFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText editName;
     private TextView textAttention;
     private TextView textName;
     private Button buttonNext;
-    private FloatingActionButton fabOk;
     private ViewSwitcher viewSwitcher;
 
     private QuestionFragment[] fragments;
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         textAttention = findViewById(R.id.activity_main__attention);
         buttonNext = findViewById(R.id.activity_main__button_next);
-        fabOk = findViewById(R.id.activity_main__fab_ok);
+        final FloatingActionButton fabOk = findViewById(R.id.activity_main__fab_ok);
         viewSwitcher = findViewById(R.id.activity_main__view_switcher);
         textName = findViewById(R.id.activity_main__target_name_text);
         editName = findViewById(R.id.activity_main__target_name_edit_text);
@@ -71,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
                 buttonNext.setVisibility(View.GONE);
             });
         }
+
+        buttonNext.setOnClickListener(v -> {
+            //TODO Save target
+            final Intent intent = new Intent(this, TestActivity.class);
+            for (int i = 0; i < fragments.length; i++) {
+                intent.putExtra(TestActivity.QUESTIONS_ARGS[i], fragments[i].getAnswers());
+            }
+            startActivity(intent);
+            finish();
+        });
 
         fabOk.setOnClickListener(v -> {
             if (TextUtils.isEmpty(editName.getText())) {
@@ -104,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
         activeIndex = -1;
         for (final QuestionFragment fragment : fragments) {
-            fragment.disactive();
+            fragment.disActive();
         }
 
         textAttention.setVisibility(View.VISIBLE);
@@ -118,20 +126,4 @@ public class MainActivity extends AppCompatActivity {
             fragment.setEnabled(enabled);
         }
     }
-
-    public static void hideKeyBoard(final Activity activity) {
-        if (activity == null)
-            return;
-
-        hideKeyBoard(activity, activity.getWindow().getDecorView().getWindowToken());
-    }
-
-    public static void hideKeyBoard(Context context, IBinder binder) {
-        if (context == null)
-            return;
-        InputMethodManager imm = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(binder, 0);
-    }
-
-
 }

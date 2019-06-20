@@ -23,7 +23,6 @@ public class TestIterator implements Iterator<String> {
         }
 
         list = new String[SIZE];
-        next = 0;
 
         for (int i = 0, next = 0; i < 5; i++) {
             for (int j = 0; j < indexes.length; j++, next++) {
@@ -31,6 +30,7 @@ public class TestIterator implements Iterator<String> {
                 list[next] = matrix[questionIndex][i];
             }
         }
+        next = 0;
     }
 
     @Override
@@ -44,5 +44,9 @@ public class TestIterator implements Iterator<String> {
             throw new NoSuchElementException("Iterator is empty !");
         }
         return list[next++];
+    }
+
+    public int getCurrentIndex() {
+        return next % indexes.length;
     }
 }
