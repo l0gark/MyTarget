@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".controller.fragment.ResultFragment">
+    android:layout_height="wrap_content"
 
-</ListView>
+    android:layout_margin="@dimen/def_half_margin"
+    android:orientation="vertical"
+    app:cardElevation="3dp">
+
+    <ListView
+        android:id="@+id/fragment_result__list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:divider="@android:color/white"
+        android:orientation="vertical"
+        tools:context=".controller.fragment.ResultFragment"
+        tools:listitem="@layout/text_item" />
+</androidx.cardview.widget.CardView>

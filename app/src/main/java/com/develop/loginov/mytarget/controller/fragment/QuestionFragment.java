@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -91,7 +92,11 @@ public class QuestionFragment extends Fragment {
 
     public void setAnswers(final String[] answers) {
         final String[] array = new String[answers.length];
-        System.arraycopy(answers, 0, array, 0, answers.length);
+        //TODO delete hardcode
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Integer.toString(++AnswerAdapter.text);
+        }
+//        System.arraycopy(answers, 0, array, 0, answers.length);
         adapter.setAnswers(array);
     }
 

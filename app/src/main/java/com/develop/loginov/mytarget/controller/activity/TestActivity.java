@@ -22,51 +22,64 @@ public class TestActivity extends AppCompatActivity {
 
     private TextView textAnswer1;
     private TextView textAnswer2;
+    private String[][] matrix;
+    private Competition competition;
+    private String target;
+    private boolean done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        final Bundle bundle = getIntent().getExtras();
-        if (bundle == null) {
+        final Bundle extras = getIntent().getExtras();
+        if (extras == null) {
             finish();
             return;
         }
         textAnswer1 = findViewById(R.id.activity_test__answer1);
         textAnswer2 = findViewById(R.id.activity_test__answer2);
+        final TextView textTarget = findViewById(R.id.activity_test__target);
 
 
-        final String[][] matrix = new String[4][];
+        matrix = new String[4][];
         for (int i = 0; i < matrix.length; i++) {
-            matrix[i] = bundle.getStringArray(QUESTIONS_ARGS[i]);
+            matrix[i] = extras.getStringArray(QUESTIONS_ARGS[i]);
         }
+        target = extras.getString(MainActivity.TARGET_ARG);
 
         final TestIterator iterator = new TestIterator(matrix);
+        competition = new Competition(matrix.length, iterator.next(), iterator.next());
+        done = false;
 
-        final Competition competition = new Competition(matrix.length,
-                                                        iterator.next(),
-                                                        iterator.next());
         textAnswer1.setText(competition.getAnswer1());
         textAnswer2.setText(competition.getAnswer2());
+        textTarget.setText(target);
 
         findViewById(R.id.activity_test__card1).setOnClickListener(v -> {
-            int memberIndex = iterator.getCurrentIndex();
-            competition.winFirst(iterator.next(), memberIndex);
-            textAnswer2.setText(competition.getAnswer2());
-            if (!iterator.hasNext()) {
-                toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
+            if (!done) {
+                int memberIndex = iterator.getCurrentIndex();
+                competition.winFirst(iterator.next(), memberIndex);
+                textAnswer2.setText(competition.getAnswer2());
+                checkIterator(iterator);
             }
         });
 
         findViewById(R.id.activity_test__card2).setOnClickListener(v -> {
-            int memberIndex = iterator.getCurrentIndex();
-            competition.winSecond(iterator.next(), memberIndex);
-            textAnswer1.setText(competition.getAnswer1());
-            if (!iterator.hasNext()) {
-                toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
+            if (!done) {
+                int memberIndex = iterator.getCurrentIndex();
+                competition.winSecond(iterator.next(), memberIndex);
+                textAnswer1.setText(competition.getAnswer1());
+                checkIterator(iterator);
             }
         });
+    }
+
+    private void checkIterator(final Iterator<String> iterator) {
+        if (!iterator.hasNext()) {
+            done = true;
+            toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
+        }
     }
 
     private void toResults(final String[][] matrix, final Set<String> winners,
@@ -79,17 +92,17 @@ public class TestActivity extends AppCompatActivity {
             }
         }
 
-        int probablity = 0;
+        int probability = 0;
         switch (winnerIndex) {
             case 0:
-                probablity = 100;
+                probability = 100;
                 break;
             case 1:
-                probablity = 40;
+                probability = 40;
                 break;
             case 2:
             case 3:
-                probablity = -100;
+                probability = -100;
                 break;
         }
 
@@ -98,7 +111,10 @@ public class TestActivity extends AppCompatActivity {
             intent.putExtra(QUESTIONS_ARGS[i], matrix[i]);
             intent.putExtra(ResultActivity.BOLD_ARGS[i], winnerMatrix[i]);
         }
-        intent.putExtra("HUI", probablity);
+
+        intent.putExtra(ResultActivity.PROBABILITY_ARG, probability);
+        intent.putExtra(MainActivity.TARGET_ARG, target);
+        finish();
         startActivity(intent);
     }
 }

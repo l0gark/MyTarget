@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.develop.loginov.mytarget.R;
 
 public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder> {
+    public static int text = 0;
 
     private static final int COUNT_ANSWERS = 5;
     private String[] answers;
@@ -101,8 +102,8 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
             viewSwitcher = itemView.findViewById(R.id.answer_item__view_switcher);
             editText = itemView.findViewById(R.id.answer_item__edit);
             button = itemView.findViewById(R.id.answer_item__button_ok);
+            viewSwitcher.post(() -> viewSwitcher.showNext());
         }
-
 
         void changeText(int position) {
             String text = editText.getText().toString();

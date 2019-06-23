@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TARGET_ARG = "TARGET";
 
     private EditText editName;
     private TextView textAttention;
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < fragments.length; i++) {
                 intent.putExtra(TestActivity.QUESTIONS_ARGS[i], fragments[i].getAnswers());
             }
+            intent.putExtra(TARGET_ARG, textName.getText().toString());
             startActivity(intent);
             finish();
         });

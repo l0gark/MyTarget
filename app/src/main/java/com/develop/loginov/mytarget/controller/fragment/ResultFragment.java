@@ -21,20 +21,6 @@ public class ResultFragment extends Fragment {
     public ResultFragment() {
     }
 
-    public static ResultFragment newInstance() {
-        ResultFragment fragment = new ResultFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,17 +30,30 @@ public class ResultFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ListView) view;
+        listView = view.findViewById(R.id.fragment_result__list);
     }
 
     public void setResults(final String[] objects, final boolean[] boldObjects) {
         if (getContext() == null) {
             return;
         }
+        String[] dublObjects = new String[objects.length << 1];
+        boolean[] dublBolds = new boolean[boldObjects.length << 1];
+        for (int i = 0; i < dublBolds.length; i++){
+            dublObjects[i] = objects[i % objects.length];
+            dublBolds[i] = boldObjects[i % boldObjects.length];
+        }
+
+
         final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
                                                               R.layout.answer_item,
-                                                              objects,
-                                                              boldObjects);
+                                                              dublObjects,
+                                                              dublBolds);
+//
+//        final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
+//                                                              R.layout.answer_item,
+//                                                              objects,
+//                                                              boldObjects);
         listView.setAdapter(adapter);
     }
 }
