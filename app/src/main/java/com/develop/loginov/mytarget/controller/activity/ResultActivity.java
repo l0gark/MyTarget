@@ -14,7 +14,6 @@ import com.develop.loginov.mytarget.controller.fragment.ResultFragment;
 public class ResultActivity extends AppCompatActivity {
     public static final String[] BOLD_ARGS = {"bold1", "bold2", "bold3", "bold4"};
     public static final String PROBABILITY_ARG = "probability";
-    private ResultFragment[] fragments;
 
     @SuppressLint("StringFormatInvalid")
     @Override
@@ -22,7 +21,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        fragments = new ResultFragment[4];
+        final ResultFragment[] fragments = new ResultFragment[4];
         fragments[0] = (ResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_result__question1);
         fragments[1] = (ResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_result__question2);
         fragments[2] = (ResultFragment) getSupportFragmentManager().findFragmentById(R.id.activity_result__question3);

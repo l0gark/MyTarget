@@ -25,10 +25,6 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
     private String[] answers;
     private Context context;
 
-    public AnswerAdapter(String[] answers) {
-        this.answers = answers;
-    }
-
     public AnswerAdapter() {
         answers = new String[COUNT_ANSWERS];
         for (int i = 0; i < COUNT_ANSWERS; i++) {
