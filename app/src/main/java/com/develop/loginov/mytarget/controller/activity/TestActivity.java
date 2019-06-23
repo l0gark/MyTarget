@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.transition.Fade;
-import androidx.transition.Transition;
+import androidx.cardview.widget.CardView;
 import androidx.transition.TransitionManager;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.model.Competition;
 import com.develop.loginov.mytarget.model.TestIterator;
+import com.transitionseverywhere.ChangeText;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -44,6 +43,8 @@ public class TestActivity extends AppCompatActivity {
         }
         textAnswer1 = findViewById(R.id.activity_test__answer1);
         textAnswer2 = findViewById(R.id.activity_test__answer2);
+        final CardView cardView1 = findViewById(R.id.activity_test__card1);
+        final CardView cardView2 = findViewById(R.id.activity_test__card2);
         final ViewGroup transitionContainer = findViewById(R.id.activity_test__transition_container);
         final TextView textTarget = findViewById(R.id.activity_test__target);
 
@@ -62,25 +63,28 @@ public class TestActivity extends AppCompatActivity {
         textAnswer2.setText(competition.getAnswer2());
         textTarget.setText(target);
 
-        findViewById(R.id.activity_test__card1).setOnClickListener(v -> {
+
+        cardView1.setOnClickListener(v -> {
             if (!done) {
                 int memberIndex = iterator.getCurrentIndex();
                 competition.winFirst(iterator.next(), memberIndex);
                 TransitionManager.beginDelayedTransition(transitionContainer,
-                                                         new Fade().setDuration(500).setInterpolator(
-                                                                 new DecelerateInterpolator()));
+                                                         new ChangeText().setChangeBehavior(
+                                                                 ChangeText.CHANGE_BEHAVIOR_OUT_IN).setDuration(
+                                                                 500).setInterpolator(new DecelerateInterpolator()));
                 textAnswer2.setText(competition.getAnswer2());
                 checkIterator(iterator);
             }
         });
 
-        findViewById(R.id.activity_test__card2).setOnClickListener(v -> {
+        cardView2.setOnClickListener(v -> {
             if (!done) {
                 int memberIndex = iterator.getCurrentIndex();
                 competition.winSecond(iterator.next(), memberIndex);
                 TransitionManager.beginDelayedTransition(transitionContainer,
-                                                         new Fade().setDuration(500).setInterpolator(
-                                                                 new DecelerateInterpolator()));
+                                                         new ChangeText().setChangeBehavior(
+                                                                 ChangeText.CHANGE_BEHAVIOR_OUT_IN).setDuration(
+                                                                 500).setInterpolator(new DecelerateInterpolator()));
                 textAnswer1.setText(competition.getAnswer1());
                 checkIterator(iterator);
             }

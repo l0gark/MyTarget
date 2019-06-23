@@ -7,14 +7,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".controller.activity.ResultActivity"></activity>
         <activity android:name=".controller.activity.TestActivity" />
         <activity
             android:name=".controller.activity.TargetActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".controller.activity.LaunchActivity">
+        <activity
+            android:label="@string/app_name"
+            android:name=".controller.activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -11,8 +11,6 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         final Intent intent = new Intent(this, TargetActivity.class);
         startActivity(intent);
         finish();
