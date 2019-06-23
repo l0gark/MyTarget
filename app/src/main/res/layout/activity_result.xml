@@ -136,9 +136,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginStart="@dimen/button_horizon_margin"
         android:layout_marginTop="@dimen/def_half_margin"
-        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/button_horizon_margin"
         android:layout_marginBottom="@dimen/def_half_margin"
 
         android:text="@string/reset"
@@ -149,9 +149,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginStart="@dimen/button_horizon_margin"
         android:layout_marginTop="@dimen/def_half_margin"
-        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/button_horizon_margin"
         android:layout_marginBottom="@dimen/def_margin"
 
         android:text="@string/why"

@@ -72,14 +72,21 @@
                     android:id="@+id/fragment_question__button_done"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/def_margin"
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:layout_marginBottom="@dimen/def_margin"
+                    android:layout_marginStart="@dimen/button_horizon_margin"
+                    android:layout_marginEnd="@dimen/button_horizon_margin"
                     android:text="@string/done" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/fragment_question__button_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/def_margin"
+
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:layout_marginBottom="@dimen/def_margin"
+                    android:layout_marginStart="@dimen/button_horizon_margin"
+                    android:layout_marginEnd="@dimen/button_horizon_margin"
                     android:text="@string/help" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

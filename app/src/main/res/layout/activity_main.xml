@@ -22,9 +22,10 @@
         android:textColor="@color/black"
         android:textSize="@dimen/big_title_text_size"
         android:textStyle="bold"
+        app:layout_constraintVertical_chainStyle="spread_inside"
 
-
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_main__container">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -90,7 +91,7 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         app:layout_constraintTop_toBottomOf="@id/activity_main__view_switcher"
-        app:layout_constraintBottom_toTopOf="@id/activity_main__attention">
+        app:layout_constraintBottom_toTopOf="@id/activity_main__container2">
 
         <fragment
             android:id="@+id/activity_name__question1"
@@ -103,7 +104,7 @@
             android:layout_marginEnd="@dimen/def_half_margin"
             android:layout_marginBottom="@dimen/def_half_margin"
 
-            app:layout_constraintBottom_toTopOf="@id/activity_name__question3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/activity_name__question2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -121,12 +122,23 @@
             android:layout_marginEnd="@dimen/def_margin"
             android:layout_marginBottom="@dimen/def_half_margin"
 
-            app:layout_constraintBottom_toTopOf="@id/activity_name__question4"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/activity_name__question1"
             app:layout_constraintTop_toTopOf="parent"
 
             app:name="@string/question2" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/activity_main__container2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        app:layout_constraintTop_toBottomOf="@id/activity_main__container"
+        app:layout_constraintBottom_toTopOf="@id/activity_main__attention">
 
         <fragment
             android:id="@+id/activity_name__question3"
@@ -143,7 +155,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/activity_name__question4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/activity_name__question1"
+            app:layout_constraintTop_toTopOf="parent"
 
             app:name="@string/question3" />
 
@@ -161,7 +173,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/activity_name__question3"
-            app:layout_constraintTop_toBottomOf="@id/activity_name__question2"
+            app:layout_constraintTop_toTopOf="parent"
 
             app:name="@string/question4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -182,6 +194,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/title_text_size"
 
+        app:layout_constraintTop_toBottomOf="@id/activity_main__container2"
         app:layout_constraintBottom_toTopOf="@id/activity_main__button_next"
        />
 
@@ -190,12 +203,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginStart="@dimen/button_horizon_margin"
         android:layout_marginTop="@dimen/def_half_margin"
-        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/button_horizon_margin"
         android:layout_marginBottom="@dimen/def_margin"
 
         android:text="@string/next"
+        app:layout_constraintTop_toBottomOf="@id/activity_main__attention"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
