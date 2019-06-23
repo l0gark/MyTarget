@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/fragment_simple_question__name"
+            android:id="@+id/fragment_question__name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/light_purple"
@@ -33,7 +33,7 @@
             android:textSize="@dimen/title_text_size" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fragment_simple_question__fab"
+            android:id="@+id/fragment_question__fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/fragment_simple_question__nested_scroll_view"
+            android:id="@+id/fragment_question__nested_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:isScrollContainer="true"
@@ -51,14 +51,14 @@
             android:visibility="gone">
 
             <LinearLayout
-                android:id="@+id/fragment_simple_question__additional_layout"
+                android:id="@+id/fragment_question__additional_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingBottom="50dp">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/fragment_simple_question__list"
+                    android:id="@+id/fragment_question__list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/def_margin"
@@ -69,14 +69,14 @@
                     android:verticalScrollbarPosition="right" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fragment_simple_question__button_done"
+                    android:id="@+id/fragment_question__button_done"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/def_margin"
                     android:text="@string/done" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/fragment_simple_question__button_help"
+                    android:id="@+id/fragment_question__button_help"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/def_margin"

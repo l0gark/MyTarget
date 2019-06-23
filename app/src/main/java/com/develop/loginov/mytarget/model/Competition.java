@@ -3,9 +3,13 @@ package com.develop.loginov.mytarget.model;
 import android.text.TextUtils;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Competition {
     private final int[] results;
+    private final Set<String> winners;
+
     private String answer1;
     private String answer2;
 
@@ -15,6 +19,8 @@ public class Competition {
         }
 
         results = new int[countMembers];
+        winners = new HashSet<>(countMembers * 7);
+
         Arrays.fill(results, 0);
 
         this.answer1 = answer1;
@@ -25,6 +31,7 @@ public class Competition {
         if (TextUtils.isEmpty(nextAnswer) || memberIndex < 0 || memberIndex >= results.length) {
             throw new IllegalArgumentException();
         }
+        winners.add(answer1);
 
         answer2 = nextAnswer;
         results[memberIndex]++;
@@ -34,6 +41,7 @@ public class Competition {
         if (TextUtils.isEmpty(nextAnswer) || memberIndex < 0 || memberIndex >= results.length) {
             throw new IllegalArgumentException();
         }
+        winners.add(answer2);
 
         answer1 = nextAnswer;
         results[memberIndex]++;
@@ -55,5 +63,9 @@ public class Competition {
 
     public String getAnswer2() {
         return answer2;
+    }
+
+    public Set<String> getWinners() {
+        return winners;
     }
 }

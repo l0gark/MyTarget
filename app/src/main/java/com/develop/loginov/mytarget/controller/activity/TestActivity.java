@@ -12,6 +12,7 @@ import com.develop.loginov.mytarget.model.Competition;
 import com.develop.loginov.mytarget.model.TestIterator;
 
 import java.util.Iterator;
+import java.util.Set;
 
 public class TestActivity extends AppCompatActivity {
     public static final String[] QUESTIONS_ARGS = {"question1",
@@ -54,8 +55,7 @@ public class TestActivity extends AppCompatActivity {
             competition.winFirst(iterator.next(), memberIndex);
             textAnswer2.setText(competition.getAnswer2());
             if (!iterator.hasNext()) {
-                Toast.makeText(TestActivity.this, "Выйграл " + competition.getWinnerIndex(), Toast.LENGTH_SHORT).show();
-                finish();
+                toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
             }
         });
 
@@ -64,9 +64,41 @@ public class TestActivity extends AppCompatActivity {
             competition.winSecond(iterator.next(), memberIndex);
             textAnswer1.setText(competition.getAnswer1());
             if (!iterator.hasNext()) {
-                Toast.makeText(TestActivity.this, "Выйграл " + competition.getWinnerIndex(), Toast.LENGTH_SHORT).show();
-                finish();
+                toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
             }
         });
+    }
+
+    private void toResults(final String[][] matrix, final Set<String> winners,
+                           final int winnerIndex) {
+        final boolean[][] winnerMatrix = new boolean[matrix.length][];
+        for (int i = 0; i < matrix.length; i++) {
+            winnerMatrix[i] = new boolean[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; j++) {
+                winnerMatrix[i][j] = winners.contains(matrix[i][j]);
+            }
+        }
+
+        int probablity = 0;
+        switch (winnerIndex) {
+            case 0:
+                probablity = 100;
+                break;
+            case 1:
+                probablity = 40;
+                break;
+            case 2:
+            case 3:
+                probablity = -100;
+                break;
+        }
+
+        final Intent intent = new Intent(this, ResultActivity.class);
+        for (int i = 0; i < matrix.length; i++) {
+            intent.putExtra(QUESTIONS_ARGS[i], matrix[i]);
+            intent.putExtra(ResultActivity.BOLD_ARGS[i], winnerMatrix[i]);
+        }
+        intent.putExtra("HUI", probablity);
+        startActivity(intent);
     }
 }

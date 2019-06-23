@@ -1,6 +1,5 @@
 package com.develop.loginov.mytarget.controller.fragment;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -19,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.develop.loginov.mytarget.AnswerAdapter;
+import com.develop.loginov.mytarget.adapter.AnswerAdapter;
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.dialog.HelpAnswerDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,11 +27,8 @@ public class QuestionFragment extends Fragment {
 
     private NestedScrollView scrollView;
     private View view;
-    private RecyclerView listView;
     private AnswerAdapter adapter;
     private FloatingActionButton fab;
-    private Button buttonHelp;
-    private Button buttonDone;
 
     private String question;
 
@@ -56,7 +52,7 @@ public class QuestionFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_simple_question, container, false);
+        return inflater.inflate(R.layout.fragment_question, container, false);
     }
 
     @Override
@@ -64,12 +60,12 @@ public class QuestionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.view = view;
 
-        final TextView textQuestion = view.findViewById(R.id.fragment_simple_question__name);
-        scrollView = view.findViewById(R.id.fragment_simple_question__nested_scroll_view);
-        listView = view.findViewById(R.id.fragment_simple_question__list);
-        fab = view.findViewById(R.id.fragment_simple_question__fab);
-        buttonDone = view.findViewById(R.id.fragment_simple_question__button_done);
-        buttonHelp = view.findViewById(R.id.fragment_simple_question__button_help);
+        final TextView textQuestion = view.findViewById(R.id.fragment_question__name);
+        scrollView = view.findViewById(R.id.fragment_question__nested_scroll_view);
+        RecyclerView listView = view.findViewById(R.id.fragment_question__list);
+        fab = view.findViewById(R.id.fragment_question__fab);
+        Button buttonDone = view.findViewById(R.id.fragment_question__button_done);
+        Button buttonHelp = view.findViewById(R.id.fragment_question__button_help);
 
         textQuestion.setText(question);
         adapter = new AnswerAdapter();
@@ -91,8 +87,6 @@ public class QuestionFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-
-
     }
 
     public void setAnswers(final String[] answers) {
@@ -127,7 +121,6 @@ public class QuestionFragment extends Fragment {
         scrollView.setVisibility(View.VISIBLE);
     }
 
-
     @SuppressLint("RestrictedApi")
     public void disActive() {
         show();
@@ -139,5 +132,4 @@ public class QuestionFragment extends Fragment {
     public void setEnabled(boolean enabled) {
         fab.setEnabled(enabled);
     }
-
 }
