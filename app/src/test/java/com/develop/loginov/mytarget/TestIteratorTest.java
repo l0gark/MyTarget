@@ -11,7 +11,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.Iterator;
 
 public class TestIteratorTest {
-
     @Test
     public void convertTest() {
         final String[][] matrix = new String[][]{{"2", "6", "10", "14", "18"},
@@ -26,5 +25,4 @@ public class TestIteratorTest {
         }
         assertFalse(iterator.hasNext());
     }
-
 }

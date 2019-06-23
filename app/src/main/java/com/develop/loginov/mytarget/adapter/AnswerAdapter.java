@@ -1,8 +1,7 @@
-package com.develop.loginov.mytarget;
+package com.develop.loginov.mytarget.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,8 @@ import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.develop.loginov.mytarget.R;
 
 public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder> {
 
@@ -96,7 +97,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.simple_text_item__text);
+            textView = itemView.findViewById(R.id.answer_item__text);
             viewSwitcher = itemView.findViewById(R.id.answer_item__view_switcher);
             editText = itemView.findViewById(R.id.answer_item__edit);
             button = itemView.findViewById(R.id.answer_item__button_ok);
