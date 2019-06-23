@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
 
-public class MainActivity extends AppCompatActivity {
+public class TargetActivity extends AppCompatActivity {
     public static final String TARGET_ARG = "TARGET";
 
     private EditText editName;

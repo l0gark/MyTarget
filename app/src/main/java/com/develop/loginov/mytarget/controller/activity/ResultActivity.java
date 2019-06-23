@@ -36,7 +36,7 @@ public class ResultActivity extends AppCompatActivity {
             boldObjects[i] = extras.getBooleanArray(BOLD_ARGS[i]);
             fragments[i].setResults(matrix[i], boldObjects[i]);
         }
-        final String target = extras.getString(MainActivity.TARGET_ARG);
+        final String target = extras.getString(TargetActivity.TARGET_ARG);
 
         final TextView textResult = findViewById(R.id.activity_result__target_done);
         final TextView textTarget = findViewById(R.id.activity_result__target);

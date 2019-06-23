@@ -2,9 +2,15 @@ package com.develop.loginov.mytarget.controller.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.Fade;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.model.Competition;
@@ -38,6 +44,7 @@ public class TestActivity extends AppCompatActivity {
         }
         textAnswer1 = findViewById(R.id.activity_test__answer1);
         textAnswer2 = findViewById(R.id.activity_test__answer2);
+        final ViewGroup transitionContainer = findViewById(R.id.activity_test__transition_container);
         final TextView textTarget = findViewById(R.id.activity_test__target);
 
 
@@ -45,7 +52,7 @@ public class TestActivity extends AppCompatActivity {
         for (int i = 0; i < matrix.length; i++) {
             matrix[i] = extras.getStringArray(QUESTIONS_ARGS[i]);
         }
-        target = extras.getString(MainActivity.TARGET_ARG);
+        target = extras.getString(TargetActivity.TARGET_ARG);
 
         final TestIterator iterator = new TestIterator(matrix);
         competition = new Competition(matrix.length, iterator.next(), iterator.next());
@@ -59,6 +66,9 @@ public class TestActivity extends AppCompatActivity {
             if (!done) {
                 int memberIndex = iterator.getCurrentIndex();
                 competition.winFirst(iterator.next(), memberIndex);
+                TransitionManager.beginDelayedTransition(transitionContainer,
+                                                         new Fade().setDuration(500).setInterpolator(
+                                                                 new DecelerateInterpolator()));
                 textAnswer2.setText(competition.getAnswer2());
                 checkIterator(iterator);
             }
@@ -68,6 +78,9 @@ public class TestActivity extends AppCompatActivity {
             if (!done) {
                 int memberIndex = iterator.getCurrentIndex();
                 competition.winSecond(iterator.next(), memberIndex);
+                TransitionManager.beginDelayedTransition(transitionContainer,
+                                                         new Fade().setDuration(500).setInterpolator(
+                                                                 new DecelerateInterpolator()));
                 textAnswer1.setText(competition.getAnswer1());
                 checkIterator(iterator);
             }
@@ -112,7 +125,7 @@ public class TestActivity extends AppCompatActivity {
         }
 
         intent.putExtra(ResultActivity.PROBABILITY_ARG, probability);
-        intent.putExtra(MainActivity.TARGET_ARG, target);
+        intent.putExtra(TargetActivity.TARGET_ARG, target);
         finish();
         startActivity(intent);
     }
