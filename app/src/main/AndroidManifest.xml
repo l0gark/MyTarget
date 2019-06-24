@@ -8,14 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.activity.ResultActivity"></activity>
+        <activity android:name=".controller.activity.MainActivity"></activity>
+        <activity android:name=".controller.activity.ResultActivity" />
         <activity android:name=".controller.activity.TestActivity" />
         <activity
             android:name=".controller.activity.TargetActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:label="@string/app_name"
-            android:name=".controller.activity.LaunchActivity">
+            android:name=".controller.activity.LaunchActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

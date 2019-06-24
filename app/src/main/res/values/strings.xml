@@ -34,4 +34,8 @@
     <string name="target_not_done">Ваша цель не осуществима вами на %1$s</string>
     <string name="why">Почему?</string>
     <string name="reset">Заново</string>
+    <string name="action_favorite">favorite</string>
+    <string name="action_profile">profile</string>
+    <string name="action_settings">settings</string>
+    <string name="action_search">search</string>
 </resources>

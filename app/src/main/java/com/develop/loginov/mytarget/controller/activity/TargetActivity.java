@@ -34,20 +34,20 @@ public class TargetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_target);
 
-        textAttention = findViewById(R.id.activity_main__attention);
-        buttonNext = findViewById(R.id.activity_main__button_next);
-        final FloatingActionButton fabOk = findViewById(R.id.activity_main__fab_ok);
-        viewSwitcher = findViewById(R.id.activity_main__view_switcher);
-        textName = findViewById(R.id.activity_main__target_name_text);
-        editName = findViewById(R.id.activity_main__target_name_edit_text);
+        textAttention = findViewById(R.id.activity_target__attention);
+        buttonNext = findViewById(R.id.activity_target__button_next);
+        final FloatingActionButton fabOk = findViewById(R.id.activity_target__fab_ok);
+        viewSwitcher = findViewById(R.id.activity_target__view_switcher);
+        textName = findViewById(R.id.activity_target__target_name_text);
+        editName = findViewById(R.id.activity_target__target_name_edit_text);
 
         fragments = new QuestionFragment[4];
-        fragments[0] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question1);
-        fragments[1] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question2);
-        fragments[2] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question3);
-        fragments[3] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_name__question4);
+        fragments[0] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question1);
+        fragments[1] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question2);
+        fragments[2] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question3);
+        fragments[3] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question4);
 
         activeIndex = -1;
 
