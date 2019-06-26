@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.fragment.TargetListFragment">
+
+    <ImageView
+        android:id="@+id/fragment_target_list__image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="@dimen/def_margin"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:layout_constraintBottom_toTopOf="@id/fragment_target_list__view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_target_list__login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/def_margin"
+
+        android:text="@string/login_sample"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/big_title_text_size"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@id/fragment_target_list__view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_target_list__image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/fragment_target_list__view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/fragment_target_list__recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_target_list__recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/def_margin"
+        app:layout_constraintTop_toBottomOf="@id/fragment_target_list__view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:compat="http://schemas.android.com/tools">
+    <group
+
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_menu__targets"
+            android:icon="@drawable/ic_ok"
+            android:title="@string/my_targets" />
+
+        <item
+            android:id="@+id/nav_menu__connection"
+            android:icon="@drawable/ic_baseline_alternate_email_24px"
+            android:title="@string/return_connection" />
+
+        <item
+            android:id="@+id/nav_menu__question"
+            android:icon="@drawable/ic_baseline_help_outline_24px"
+            android:title="@string/question_answer" />
+
+        <item
+            android:id="@+id/nav_menu__logout"
+            android:icon="@drawable/ic_baseline_exit_to_app_24px"
+            android:title="@string/quit" />
+    </group>
+</menu>

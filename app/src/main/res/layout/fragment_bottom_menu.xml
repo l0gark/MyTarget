@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+    <ImageView
+        android:id="@+id/fragment_bottom_menu__image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="@dimen/def_margin"
+        android:src="@drawable/ic_baseline_account_circle_24px"
+        app:layout_constraintBottom_toTopOf="@id/fragment_bottom_menu__view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_bottom_menu__login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/def_margin"
+
+        android:text="@string/login_sample"
+        android:textSize="@dimen/big_title_text_size"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+
+        app:layout_constraintStart_toEndOf="@id/fragment_bottom_menu__image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_bottom_menu__view"
+        />
+
+    <View
+        android:id="@+id/fragment_bottom_menu__view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/navigation_view" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="bottom"
+
+        android:layout_margin="@dimen/def_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_bottom_menu__view"
+        app:menu="@menu/bottom_nav_drawer_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
