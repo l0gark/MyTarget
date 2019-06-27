@@ -40,7 +40,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.answer_item, null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_answer, null, false);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                    ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
@@ -94,10 +94,10 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.answer_item__text);
-            viewSwitcher = itemView.findViewById(R.id.answer_item__view_switcher);
-            editText = itemView.findViewById(R.id.answer_item__edit);
-            button = itemView.findViewById(R.id.answer_item__button_ok);
+            textView = itemView.findViewById(R.id.item_answer__text);
+            viewSwitcher = itemView.findViewById(R.id.item_answer__view_switcher);
+            editText = itemView.findViewById(R.id.item_answer__edit);
+            button = itemView.findViewById(R.id.item_answer__button_ok);
             viewSwitcher.post(() -> viewSwitcher.showNext());
         }
 

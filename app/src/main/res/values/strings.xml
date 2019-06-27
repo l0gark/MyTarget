@@ -43,5 +43,8 @@
     <string name="question_answer">Вопрос-Ответ</string>
     <string name="quit">Выйти</string>
     <string name="login_sample">l0gark</string>
+    <string name="will_done">Сделаю</string>
+    <string name="not_will_done">Не сделаю</string>
+    <string name="date_sample">26.06.2019</string>
 
 </resources>

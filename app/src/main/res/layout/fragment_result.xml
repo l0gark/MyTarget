@@ -17,5 +17,5 @@
         android:divider="@android:color/white"
         android:orientation="vertical"
         tools:context=".controller.fragment.ResultFragment"
-        tools:listitem="@layout/text_item" />
+        tools:listitem="@layout/item_text" />
 </androidx.cardview.widget.CardView>

@@ -46,12 +46,12 @@ public class ResultFragment extends Fragment {
 
 
         final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
-                                                              R.layout.answer_item,
+                                                              R.layout.item_answer,
                                                               dublObjects,
                                                               dublBolds);
 //
 //        final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
-//                                                              R.layout.answer_item,
+//                                                              R.layout.item_answer,
 //                                                              objects,
 //                                                              boldObjects);
         listView.setAdapter(adapter);

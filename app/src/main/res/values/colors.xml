@@ -8,4 +8,6 @@
     <color name="color_white">#FFFFFF</color>
     <color name="blue">#0020EE</color>
     <color name="turquoise">#00ECA3</color>
+    <color name="green">#12BD00</color>
+    <color name="red">#C70010</color>
 </resources>

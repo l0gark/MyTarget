@@ -36,6 +36,10 @@ public class TargetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         textAttention = findViewById(R.id.activity_target__attention);
         buttonNext = findViewById(R.id.activity_target__button_next);
         final FloatingActionButton fabOk = findViewById(R.id.activity_target__fab_ok);
@@ -104,6 +108,12 @@ public class TargetActivity extends AppCompatActivity {
         viewSwitcher.setOutAnimation(slideOutRight);
 
         setEnabled(false);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     @Override

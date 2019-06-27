@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".controller.fragment.TargetListFragment">
 
     <ImageView
@@ -45,6 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/def_margin"
-        app:layout_constraintTop_toBottomOf="@id/fragment_target_list__view" />
+        tools:listitem="@layout/item_target"
+        tools:itemCount="7"
+        app:layout_constraintTop_toBottomOf="@id/fragment_target_list__view"
+        android:paddingBottom="80dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

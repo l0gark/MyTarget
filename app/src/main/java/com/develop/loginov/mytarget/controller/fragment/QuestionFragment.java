@@ -113,24 +113,20 @@ public class QuestionFragment extends Fragment {
         view.setVisibility(View.GONE);
     }
 
-    @SuppressLint("RestrictedApi")
     public void show() {
         view.setVisibility(View.VISIBLE);
     }
 
-    @SuppressLint("RestrictedApi")
     public void active() {
         show();
-        fab.setVisibility(View.GONE);
+        fab.hide();
         scrollView.setVisibility(View.VISIBLE);
     }
 
-    @SuppressLint("RestrictedApi")
     public void disActive() {
         show();
-        fab.setVisibility(View.VISIBLE);
+        fab.show();
         scrollView.setVisibility(View.GONE);
-
     }
 
     public void setEnabled(boolean enabled) {

@@ -1,5 +1,7 @@
 package com.develop.loginov.mytarget.controller.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,16 +14,19 @@ import com.develop.loginov.mytarget.controller.fragment.TargetListFragment;
 import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.develop.loginov.mytarget.helper.FragmentHelper;
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final BottomAppBar bottomAppBar = findViewById(R.id.activity_main__bottom_app_bar);
+        final FloatingActionButton floatingActionButton = findViewById(R.id.activity_main__fab);
+        floatingActionButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, TargetActivity.class));
+        });
         setSupportActionBar(bottomAppBar);
     }
 
@@ -39,22 +44,25 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
             case R.id.app_bar_profile:
                 break;
             case android.R.id.home:
-                BottomSheetDialogFragment bottomSheetDialogFragment = new NavigationMenuDialog();
+                NavigationMenuDialog bottomSheetDialogFragment = new NavigationMenuDialog();
+                bottomSheetDialogFragment.setOnNavigationItemClickListener(this);
                 bottomSheetDialogFragment.show(getSupportFragmentManager(), "BOTTOM_MENU_TAG");
                 break;
         }
-        Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
         return true;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void clickItem(int itemId) {
         final String login = getResources().getString(R.string.login_sample);
+
         switch (itemId) {
             case R.id.nav_menu__targets:
                 FragmentHelper.changeFragment(TargetListFragment.newInstance(login),
                                               getSupportFragmentManager(),
                                               R.id.activity_main__container);
+
                 break;
             case R.id.nav_menu__connection:
                 FragmentHelper.changeFragment(TargetListFragment.newInstance(login),

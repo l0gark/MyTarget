@@ -31,6 +31,7 @@ public class NavigationMenuDialog extends BottomSheetDialogFragment {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             if (onNavigationItemClickListener != null) {
                 onNavigationItemClickListener.clickItem(menuItem.getItemId());
+                dismiss();
             }
             return true;
         });

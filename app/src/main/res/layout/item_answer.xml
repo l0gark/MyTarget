@@ -13,7 +13,7 @@
         app:cardElevation="1dp">
 
         <ViewSwitcher
-            android:id="@+id/answer_item__view_switcher"
+            android:id="@+id/item_answer__view_switcher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/answer_item__edit"
+                    android:id="@+id/item_answer__edit"
                     android:imeOptions="flagNoFullscreen"
                     android:padding="@dimen/def_margin"
                     android:layout_width="0dp"
@@ -48,12 +48,12 @@
                     android:textSize="@dimen/text_size"
                     android:background="@color/color_white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/answer_item__button_ok"
+                    app:layout_constraintEnd_toStartOf="@id/item_answer__button_ok"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/answer_item__button_ok"
+                    android:id="@+id/item_answer__button_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -68,7 +68,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/answer_item__text"
+                android:id="@+id/item_answer__text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"

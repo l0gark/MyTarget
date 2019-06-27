@@ -27,7 +27,7 @@ public class BoldArrayAdapter extends ArrayAdapter<String> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        TextView view = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.text_item,
+        TextView view = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_text,
                                                                              null,
                                                                              false);
         view.setText(getItem(position));
