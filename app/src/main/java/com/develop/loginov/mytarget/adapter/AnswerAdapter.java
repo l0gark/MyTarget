@@ -98,7 +98,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
             viewSwitcher = itemView.findViewById(R.id.item_answer__view_switcher);
             editText = itemView.findViewById(R.id.item_answer__edit);
             button = itemView.findViewById(R.id.item_answer__button_ok);
-            viewSwitcher.post(() -> viewSwitcher.showNext());
+//            viewSwitcher.post(() -> viewSwitcher.showNext());
         }
 
         void changeText(int position) {
