@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:animateLayoutChanges="true"
     android:background="@color/color_white"
     android:orientation="vertical">
@@ -23,10 +23,10 @@
         android:textColor="@color/black"
         android:textSize="@dimen/big_title_text_size"
         android:textStyle="bold"
-        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintBottom_toTopOf="@id/activity_target__vertical_line"
 
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/activity_target__container">
+        app:layout_constraintVertical_chainStyle="spread_inside">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -49,9 +49,9 @@
                     android:id="@+id/activity_target__target_name_edit_text"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
-                    android:inputType="textShortMessage"
                     android:layout_height="wrap_content"
                     android:hint="@string/my_target"
+                    android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="@dimen/big_title_text_size" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -62,12 +62,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/def_margin"
+                android:tint="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_ok"
-                android:tint="@android:color/white"
-                />
+                app:srcCompat="@drawable/ic_ok" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -77,113 +76,119 @@
             android:layout_height="match_parent"
 
             android:layout_margin="@dimen/def_margin"
+            android:gravity="center"
             android:text="@string/target_sample"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="@dimen/big_title_text_size"
-            android:gravity="center"
             android:textStyle="bold" />
     </ViewSwitcher>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_target__container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
+    <View
+        android:id="@+id/activity_target__horizontal_line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+
+        android:layout_marginStart="@dimen/button_horizon_margin"
+        android:layout_marginEnd="@dimen/button_horizon_margin"
+
+        android:background="@android:color/black"
+
+        app:layout_constraintBottom_toTopOf="@id/activity_target__attention"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher"
-        app:layout_constraintBottom_toTopOf="@id/activity_target__container2">
+       />
 
-        <fragment
-            android:id="@+id/activity_target__question1"
-            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-            tools:layout="@layout/fragment_question"
+    <View
+        android:id="@+id/activity_target__vertical_line"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
 
-            android:layout_marginStart="@dimen/def_margin"
-            android:layout_marginTop="@dimen/def_margin"
-            android:layout_marginEnd="@dimen/def_half_margin"
-            android:layout_marginBottom="@dimen/def_half_margin"
+        android:background="@android:color/black"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/activity_target__question2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/activity_target__attention"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher"
+        />
 
-            app:name="@string/question1" />
+    <fragment
+        android:id="@+id/activity_target__question1"
+        android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
+        tools:layout="@layout/fragment_question"
 
-        <fragment
-            android:id="@+id/activity_target__question2"
-            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-            tools:layout="@layout/fragment_question"
-
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="@dimen/def_half_margin"
-            android:layout_marginTop="@dimen/def_margin"
-            android:layout_marginEnd="@dimen/def_margin"
-            android:layout_marginBottom="@dimen/def_half_margin"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/activity_target__question1"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:name="@string/question2" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/activity_target__container2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        app:layout_constraintTop_toBottomOf="@id/activity_target__container"
-        app:layout_constraintBottom_toTopOf="@id/activity_target__attention">
 
-        <fragment
-            android:id="@+id/activity_target__question3"
-            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-            tools:layout="@layout/fragment_question"
+        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginTop="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/def_half_margin"
+        android:layout_marginBottom="@dimen/def_half_margin"
 
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
+        app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
+        app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
+        app:name="@string/question1" />
+
+    <fragment
+        android:id="@+id/activity_target__question2"
+        android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
+        tools:layout="@layout/fragment_question"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/def_half_margin"
+        android:layout_marginTop="@dimen/def_margin"
+        android:layout_marginEnd="@dimen/def_margin"
+        android:layout_marginBottom="@dimen/def_half_margin"
+
+        app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
+        app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
+        app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
+
+        app:name="@string/question2" />
+
+    <fragment
+        android:id="@+id/activity_target__question3"
+        android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
+        tools:layout="@layout/fragment_question"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
 
 
-            android:layout_marginStart="@dimen/def_margin"
-            android:layout_marginTop="@dimen/def_half_margin"
-            android:layout_marginEnd="@dimen/def_half_margin"
-            android:layout_marginBottom="@dimen/def_margin"
+        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginTop="@dimen/def_half_margin"
+        android:layout_marginEnd="@dimen/def_half_margin"
+        android:layout_marginBottom="@dimen/def_margin"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/activity_target__question4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
+        app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
+        app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
 
-            app:name="@string/question3" />
+        app:name="@string/question3" />
 
-        <fragment
-            android:id="@+id/activity_target__question4"
-            android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-            tools:layout="@layout/fragment_question"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+    <fragment
+        android:id="@+id/activity_target__question4"
+        android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/def_half_margin"
 
-            android:layout_marginStart="@dimen/def_half_margin"
-            android:layout_marginTop="@dimen/def_half_margin"
-            android:layout_marginEnd="@dimen/def_margin"
-            android:layout_marginBottom="@dimen/def_margin"
+        android:layout_marginTop="@dimen/def_half_margin"
+        app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
+        app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/activity_target__question3"
-            app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
+        app:name="@string/question4"
 
-            app:name="@string/question4" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        tools:layout="@layout/fragment_question" />
 
     <TextView
         android:id="@+id/activity_target__attention"
@@ -195,15 +200,14 @@
         android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_half_margin"
 
+        android:gravity="center"
         android:text="@string/attention_answer"
         android:textAlignment="center"
-        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="@dimen/title_text_size"
 
-        app:layout_constraintTop_toBottomOf="@id/activity_target__container2"
         app:layout_constraintBottom_toTopOf="@id/activity_target__button_next"
-       />
+        app:layout_constraintTop_toBottomOf="@id/activity_target__vertical_line" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/activity_target__button_next"
@@ -216,7 +220,7 @@
         android:layout_marginBottom="@dimen/def_margin"
 
         android:text="@string/next"
-        app:layout_constraintTop_toBottomOf="@id/activity_target__attention"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_target__attention" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
