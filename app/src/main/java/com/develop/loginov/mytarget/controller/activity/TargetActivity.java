@@ -27,7 +27,6 @@ import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
 
 public class TargetActivity extends AppCompatActivity {
     public static final String TARGET_ARG = "TARGET";
-    public static final String TARGET_ID_ARG = "TARGET_ID";
 
     private EditText editName;
     private TextView textAttention;
@@ -83,8 +82,6 @@ public class TargetActivity extends AppCompatActivity {
         }
 
         buttonNext.setOnClickListener(v -> {
-            //TODO Save target
-
             final String[] answersTotalData = new String[20];
             final Intent intent = new Intent(this, TestActivity.class);
             for (int i = 0; i < fragments.length; i++) {

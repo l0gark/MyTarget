@@ -5,13 +5,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +18,6 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
 
     private static final int COUNT_ANSWERS = 5;
     private String[] answers;
-    private Context context;
 
     public AnswerAdapter() {
         answers = new String[COUNT_ANSWERS];
@@ -39,8 +33,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context = parent.getContext();
-        View view = LayoutInflater.from(context).inflate(R.layout.item_answer, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_answer, null, false);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                    ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
@@ -52,25 +45,14 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
         if (position >= COUNT_ANSWERS) {
             return;
         }
-        holder.textView.setText(answers[position]);
-
 
         holder.editText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
                 holder.changeText(position);
-                return true;
+                return false;
             }
-            return false;
+            return true;
         });
-        holder.button.setOnClickListener(v -> holder.changeText(position));
-        holder.textView.setOnClickListener(v -> holder.viewSwitcher.showNext());
-
-        final Animation slideInLeft = AnimationUtils.loadAnimation(context,
-                                                                   android.R.anim.slide_in_left);
-        final Animation slideOutRight = AnimationUtils.loadAnimation(context,
-                                                                     android.R.anim.slide_out_right);
-        holder.viewSwitcher.setInAnimation(slideInLeft);
-        holder.viewSwitcher.setOutAnimation(slideOutRight);
     }
 
     @Override
@@ -87,28 +69,18 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ViewSwitcher viewSwitcher;
-        TextView textView;
-        EditText editText;
-        Button button;
+        private final EditText editText;
 
         ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.item_answer__text);
-            viewSwitcher = itemView.findViewById(R.id.item_answer__view_switcher);
             editText = itemView.findViewById(R.id.item_answer__edit);
-            button = itemView.findViewById(R.id.item_answer__button_ok);
-//            viewSwitcher.post(() -> viewSwitcher.showNext());
         }
 
         void changeText(int position) {
-            String text = editText.getText().toString();
-            if (TextUtils.isEmpty(text)) {
-                return;
+           final String text = editText.getText().toString();
+            if (!TextUtils.isEmpty(text)) {
+                answers[position] = text;
             }
-            answers[position] = text;
-            textView.setText(text);
-            viewSwitcher.showNext();
         }
     }
 }

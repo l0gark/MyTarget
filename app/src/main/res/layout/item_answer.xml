@@ -8,75 +8,21 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/def_half_margin"
+        android:layout_margin="@dimen/def_margin"
         app:cardCornerRadius="@dimen/def_margin"
         app:cardElevation="1dp">
 
-        <ViewSwitcher
-            android:id="@+id/item_answer__view_switcher"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/item_answer__edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_marginStart="@dimen/def_half_margin"
-            android:layout_marginTop="@dimen/def_half_margin"
-            android:layout_marginEnd="@dimen/def_half_margin"
-            android:layout_marginBottom="@dimen/def_half_margin"
-
-            android:text="@string/target_sample"
-            android:textAlignment="center"
+            android:background="@color/color_white"
+            android:hint="@string/answer"
+            android:imeOptions="flagNoFullscreen"
+            android:inputType="textShortMessage"
+            android:padding="@dimen/def_margin"
+            android:layout_margin="@dimen/def_margin"
             android:textColor="@color/black"
-            android:textSize="@dimen/big_title_text_size"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/activity_main__container"
-
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/item_answer__edit"
-                    android:imeOptions="flagNoFullscreen"
-                    android:padding="@dimen/def_margin"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/answer"
-                    android:inputType="textShortMessage"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size"
-                    android:background="@color/color_white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/item_answer__button_ok"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/item_answer__button_ok"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_margin="@dimen/def_half_margin"
-
-                    android:text="@string/ok"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/item_answer__text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                android:padding="@dimen/def_margin"
-                android:textSize="@dimen/title_text_size"
-                tools:text="@string/app_name" />
-
-        </ViewSwitcher>
+            android:textSize="@dimen/text_size" />
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

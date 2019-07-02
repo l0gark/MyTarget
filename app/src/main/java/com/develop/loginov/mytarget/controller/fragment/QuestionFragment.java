@@ -95,7 +95,6 @@ public class QuestionFragment extends Fragment {
         for (int i = 0; i < array.length; i++) {
             array[i] = Integer.toString(++AnswerAdapter.text);
         }
-//        System.arraycopy(answers, 0, array, 0, answers.length);
         adapter.setAnswers(array);
     }
 
