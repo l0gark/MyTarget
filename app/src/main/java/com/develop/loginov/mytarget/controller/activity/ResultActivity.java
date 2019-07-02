@@ -34,7 +34,9 @@ public class ResultActivity extends AppCompatActivity {
         for (int i = 0; i < matrix.length; i++) {
             matrix[i] = extras.getStringArray(TestActivity.QUESTIONS_ARGS[i]);
             boldObjects[i] = extras.getBooleanArray(BOLD_ARGS[i]);
-            fragments[i].setResults(matrix[i], boldObjects[i]);
+            if (fragments[i] != null) {
+                fragments[i].setResults(matrix[i], boldObjects[i]);
+            }
         }
         final String target = extras.getString(TargetActivity.TARGET_ARG);
 

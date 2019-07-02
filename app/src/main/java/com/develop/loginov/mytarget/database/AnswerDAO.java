@@ -1,5 +1,7 @@
 package com.develop.loginov.mytarget.database;
 
+import android.text.TextUtils;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -27,4 +29,15 @@ public abstract class AnswerDAO {
             insert(answer);
         }
     }
+
+    @Transaction
+    public void insertAll(final Answer[] answers) {
+        if (answers.length != 20) {
+            throw new IllegalArgumentException("Array length must be 20");
+        }
+        for (final Answer answer: answers) {
+            insertOrUpdate(answer);
+        }
+    }
+
 }

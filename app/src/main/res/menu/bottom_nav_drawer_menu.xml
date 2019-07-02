@@ -11,7 +11,7 @@
             android:title="@string/my_targets" />
 
         <item
-            android:id="@+id/nav_menu__connection"
+            android:id="@+id/nav_menu__feedback"
             android:icon="@drawable/ic_baseline_alternate_email_24px"
             android:title="@string/return_connection" />
 

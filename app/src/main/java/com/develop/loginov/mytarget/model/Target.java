@@ -1,12 +1,17 @@
 package com.develop.loginov.mytarget.model;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import com.develop.loginov.mytarget.database.LongConverter;
+import com.develop.loginov.mytarget.database.TargetDAO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -15,20 +20,41 @@ import java.util.Random;
 @TypeConverters(LongConverter.class)
 public class Target {
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     private int id;
     private String name;
     private int probability;
     private long time;
 
-    public Target(String name, int probability, long time) {
+    public Target(@NonNull final String name, final int probability, final long time) {
+        if (TextUtils.isEmpty(name) || Math.abs(probability) > 100 || time < 0) {
+            throw new IllegalArgumentException("Invalid data for Target");
+        }
         this.name = name;
         this.probability = probability;
         this.time = time;
     }
 
-    public static Target of(final String name, final int probability, final long time) {
+    public static long save(@NonNull final Target target, @NonNull final TargetDAO dao) {
+        return dao.insertOrUpdate(target);
+    }
+
+    public static void getData(@NonNull final List<Target> targets, @NonNull final TargetDAO dao) {
+        targets.clear();
+        targets.addAll(dao.getTargets());
+    }
+
+    public static void getData(@NonNull final List<Target> targets, @NonNull final TargetDAO dao,
+                               @NonNull final RecyclerView.Adapter adapter) {
+        getData(targets, dao);
+        adapter.notifyDataSetChanged();
+    }
+
+    public static Target of(@NonNull final String name, final int probability, final long time) {
         return new Target(name, probability, time);
+    }
+
+    public static Target of(@NonNull final String name, final long time) {
+        return new Target(name, 0, time);
     }
 
     public static List<Target> createTargets() {

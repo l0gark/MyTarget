@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.develop.loginov.mytarget.R;
+import com.develop.loginov.mytarget.controller.fragment.FeedBackFragment;
 import com.develop.loginov.mytarget.controller.fragment.TargetListFragment;
 import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.develop.loginov.mytarget.helper.FragmentHelper;
@@ -17,6 +17,8 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
+    private static final String LOGIN = "l0gark";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
             startActivity(new Intent(MainActivity.this, TargetActivity.class));
         });
         setSupportActionBar(bottomAppBar);
+
+        FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
+                                      getSupportFragmentManager(),
+                                      R.id.activity_main__container);
     }
 
     @Override
@@ -55,22 +61,21 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
     @SuppressLint("RestrictedApi")
     @Override
     public void clickItem(int itemId) {
-        final String login = getResources().getString(R.string.login_sample);
 
         switch (itemId) {
             case R.id.nav_menu__targets:
-                FragmentHelper.changeFragment(TargetListFragment.newInstance(login),
+                FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
                                               getSupportFragmentManager(),
                                               R.id.activity_main__container);
 
                 break;
-            case R.id.nav_menu__connection:
-                FragmentHelper.changeFragment(TargetListFragment.newInstance(login),
+            case R.id.nav_menu__feedback:
+                FragmentHelper.changeFragment(FeedBackFragment.newInstance(),
                                               getSupportFragmentManager(),
                                               R.id.activity_main__container);
                 break;
             case R.id.nav_menu__question:
-                FragmentHelper.changeFragment(TargetListFragment.newInstance(login),
+                FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
                                               getSupportFragmentManager(),
                                               R.id.activity_main__container);
                 break;

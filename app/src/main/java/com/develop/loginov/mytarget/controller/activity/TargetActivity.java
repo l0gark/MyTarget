@@ -11,16 +11,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.develop.loginov.mytarget.R;
+import com.develop.loginov.mytarget.controller.application.App;
 import com.develop.loginov.mytarget.controller.fragment.QuestionFragment;
+import com.develop.loginov.mytarget.database.AnswerDAO;
+import com.develop.loginov.mytarget.database.TargetDAO;
+import com.develop.loginov.mytarget.model.Answer;
+import com.develop.loginov.mytarget.model.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
 
 public class TargetActivity extends AppCompatActivity {
     public static final String TARGET_ARG = "TARGET";
+    public static final String TARGET_ID_ARG = "TARGET_ID";
 
     private EditText editName;
     private TextView textAttention;
@@ -77,11 +84,27 @@ public class TargetActivity extends AppCompatActivity {
 
         buttonNext.setOnClickListener(v -> {
             //TODO Save target
+
+            final String[] answersTotalData = new String[20];
             final Intent intent = new Intent(this, TestActivity.class);
             for (int i = 0; i < fragments.length; i++) {
-                intent.putExtra(TestActivity.QUESTIONS_ARGS[i], fragments[i].getAnswers());
+                String[] answersData = fragments[i].getAnswers();
+
+                //put data in Intent
+                intent.putExtra(TestActivity.QUESTIONS_ARGS[i], answersData);
+
+                //save data to total array
+                System.arraycopy(answersData,
+                                 0,
+                                 answersTotalData,
+                                 i * fragments.length,
+                                 answersData.length);
             }
-            intent.putExtra(TARGET_ARG, textName.getText().toString());
+
+            final String targetName = textName.getText().toString();
+            saveTarget(targetName, answersTotalData);
+
+            intent.putExtra(TARGET_ARG, targetName);
             startActivity(intent);
             finish();
         });
@@ -108,6 +131,22 @@ public class TargetActivity extends AppCompatActivity {
         viewSwitcher.setOutAnimation(slideOutRight);
 
         setEnabled(false);
+    }
+
+    private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {
+        new Thread(() -> {
+            final TargetDAO targetDAO = App.getInstance().getDataBase().targetDAO();
+            final AnswerDAO answerDAO = App.getInstance().getDataBase().answerDAO();
+
+            final Target target = Target.of(targetName, System.currentTimeMillis());
+            //create DAO
+            long ownerId = Target.save(target, targetDAO);
+            final Answer[] answers = new Answer[strAnswers.length];
+            for (int i = 0; i < strAnswers.length; i++) {
+                answers[i] = new Answer(strAnswers[i], ownerId, i);
+            }
+            answerDAO.insertAll(answers);
+        }).start();
     }
 
     @Override

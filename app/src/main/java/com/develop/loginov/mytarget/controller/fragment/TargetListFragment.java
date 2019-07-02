@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.adapter.TargetAdapter;
+import com.develop.loginov.mytarget.controller.application.App;
 import com.develop.loginov.mytarget.model.Target;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TargetListFragment extends Fragment {
@@ -58,12 +60,20 @@ public class TargetListFragment extends Fragment {
         final RecyclerView recyclerView = view.findViewById(R.id.fragment_target_list__recycler_view);
 
         textLogin.setText(login);
-        final List<Target> targets = Target.createTargets();
+        final List<Target> targets = new ArrayList<>();
         final RecyclerView.Adapter adapter = new TargetAdapter(targets);
+        setDataToList(targets, adapter);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                                                               RecyclerView.VERTICAL,
                                                               false));
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
+    }
+
+    private void setDataToList(final @NonNull List<Target> targets,
+                               final @NonNull RecyclerView.Adapter adapter) {
+        new Thread(() -> Target.getData(targets,
+                                        App.getInstance().getDataBase().targetDAO(),
+                                        adapter)).start();
     }
 }

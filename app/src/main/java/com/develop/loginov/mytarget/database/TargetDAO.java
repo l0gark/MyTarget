@@ -20,17 +20,22 @@ public abstract class TargetDAO {
     @Query("SELECT * FROM targets WHERE id= :id LIMIT 1")
     public abstract Target getTargetById(final int id);
 
+    @Query("SELECT * FROM targets")
+    public abstract List<Target> getTargets();
+
     @Insert
-    public abstract void insert(final Target target);
+    public abstract long insert(final Target target);
 
     @Update
     public abstract int update(final Target target);
 
+
     @Transaction
-    public void insertOrUpdate(final Target target) {
+    public long insertOrUpdate(final Target target) {
         if (update(target) == 0) {
-            insert(target);
+            return insert(target);
         }
+        return -1;
     }
 
     @Transaction
@@ -39,4 +44,5 @@ public abstract class TargetDAO {
             insertOrUpdate(target);
         }
     }
+
 }

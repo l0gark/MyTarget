@@ -13,7 +13,7 @@
 
         android:layout_margin="@dimen/def_margin"
 
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:text="@string/target_sample"
         android:textAlignment="center"
         android:textColor="@color/black"
