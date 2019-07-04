@@ -1,11 +1,11 @@
 package com.develop.loginov.mytarget.adapter;
 
-import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -21,19 +21,14 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
 
     public AnswerAdapter() {
         answers = new String[COUNT_ANSWERS];
-        for (int i = 0; i < COUNT_ANSWERS; i++) {
-            answers[i] = "";
-        }
-    }
-
-    public String[] getAnswers() {
-        return answers;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_answer, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_answer,
+                                                                     null,
+                                                                     false);
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                    ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
@@ -45,13 +40,22 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
         if (position >= COUNT_ANSWERS) {
             return;
         }
+        if (answers[position] != null) {
+            holder.editText.setText(answers[position]);
+        }
 
-        holder.editText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_DONE || actionId == EditorInfo.IME_ACTION_NEXT) {
-                holder.changeText(position);
-                return false;
+        holder.editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
-            return true;
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                holder.changeText(position);
+            }
         });
     }
 
@@ -60,7 +64,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
         return COUNT_ANSWERS;
     }
 
-    public void setAnswers(String[] answers) {
+    public void setAnswers(@NonNull final String[] answers) {
         if (answers.length == COUNT_ANSWERS) {
             this.answers = answers;
             notifyDataSetChanged();
@@ -76,8 +80,8 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
             editText = itemView.findViewById(R.id.item_answer__edit);
         }
 
-        void changeText(int position) {
-           final String text = editText.getText().toString();
+        void changeText(final int position) {
+            final String text = editText.getText().toString();
             if (!TextUtils.isEmpty(text)) {
                 answers[position] = text;
             }

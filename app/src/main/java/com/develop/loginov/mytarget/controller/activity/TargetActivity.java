@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.develop.loginov.mytarget.controller.application.App;
 import com.develop.loginov.mytarget.controller.fragment.QuestionFragment;
 import com.develop.loginov.mytarget.database.AnswerDAO;
 import com.develop.loginov.mytarget.database.TargetDAO;
+import com.develop.loginov.mytarget.dialog.QuestionDialogFragment;
 import com.develop.loginov.mytarget.model.Answer;
 import com.develop.loginov.mytarget.model.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,7 +37,8 @@ public class TargetActivity extends AppCompatActivity {
     private ViewSwitcher viewSwitcher;
 
     private QuestionFragment[] fragments;
-    private int activeIndex;
+    private QuestionDialogFragment dialogFragment;
+    private String[][] answers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,26 +61,17 @@ public class TargetActivity extends AppCompatActivity {
         fragments[1] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question2);
         fragments[2] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question3);
         fragments[3] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question4);
+        dialogFragment = new QuestionDialogFragment();
 
-        activeIndex = -1;
 
-        String[] answers = getResources().getStringArray(R.array.answers_sample);
+        answers = new String[4][5];
+
+
         for (int i = 0; i < fragments.length; i++) {
-            fragments[i].setAnswers(answers);
             final int x = i;
             fragments[i].setOnClickListener(v -> {
-                if (x == activeIndex) {
-                    return;
-                }
-
-                for (final QuestionFragment fragment : fragments) {
-                    fragment.hide();
-                }
-                activeIndex = x;
-                fragments[activeIndex].active();
-
-                textAttention.setVisibility(View.GONE);
-                buttonNext.setVisibility(View.GONE);
+                dialogFragment.setAnswers(answers[x]);
+                dialogFragment.show(getSupportFragmentManager(), "Dialog");
             });
         }
 
@@ -85,19 +79,19 @@ public class TargetActivity extends AppCompatActivity {
             final String[] answersTotalData = new String[20];
             final Intent intent = new Intent(this, TestActivity.class);
             for (int i = 0; i < fragments.length; i++) {
-                String[] answersData = fragments[i].getAnswers();
-
                 //put data in Intent
-                intent.putExtra(TestActivity.QUESTIONS_ARGS[i], answersData);
+                intent.putExtra(TestActivity.QUESTIONS_ARGS[i], answers[i]);
 
                 //save data to total array
-                System.arraycopy(answersData,
-                                 0,
-                                 answersTotalData,
-                                 i * fragments.length,
-                                 answersData.length);
+                System.arraycopy(answers[i], 0, answersTotalData, i * answers[0].length, answers[i].length);
             }
 
+            for (int i = 0; i < answersTotalData.length; i++){
+                if(answersTotalData[i] == null){
+                    Toast.makeText(TargetActivity.this, "Введите все ответы " + (++i), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
             final String targetName = textName.getText().toString();
             saveTarget(targetName, answersTotalData);
 
@@ -150,21 +144,6 @@ public class TargetActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         finish();
         return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (activeIndex < 0) {
-            super.onBackPressed();
-            return;
-        }
-        activeIndex = -1;
-        for (final QuestionFragment fragment : fragments) {
-            fragment.disActive();
-        }
-
-        textAttention.setVisibility(View.VISIBLE);
-        buttonNext.setVisibility(View.VISIBLE);
     }
 
     private void setEnabled(boolean enabled) {
