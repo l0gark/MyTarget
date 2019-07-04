@@ -20,7 +20,7 @@ import java.util.Random;
 @TypeConverters(LongConverter.class)
 public class Target {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
     private String name;
     private int probability;
     private long time;
@@ -72,11 +72,11 @@ public class Target {
                              Target.of("Target9", 100, time + random.nextInt(value) - value / 2));
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

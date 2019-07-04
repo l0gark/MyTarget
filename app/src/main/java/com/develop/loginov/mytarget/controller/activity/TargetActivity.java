@@ -25,10 +25,16 @@ import com.develop.loginov.mytarget.model.Answer;
 import com.develop.loginov.mytarget.model.Target;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Iterator;
+import java.util.List;
+
 import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
 
 public class TargetActivity extends AppCompatActivity {
     public static final String TARGET_ARG = "TARGET";
+    public static final String TARGET_ID_ARG = "TARGET_ID";
+    private boolean oldTarget = false;
+    private long id = -1;
 
     private EditText editName;
     private TextView textAttention;
@@ -66,6 +72,30 @@ public class TargetActivity extends AppCompatActivity {
 
         answers = new String[4][5];
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            final String target = extras.getString(TARGET_ARG);
+            final long id = extras.getLong(TARGET_ID_ARG);
+
+            new Thread(() -> {
+                final AnswerDAO answerDAO = App.getInstance().getDataBase().answerDAO();
+                final List<Answer> answersDB = answerDAO.getAnswersById(id);
+                if (answersDB == null || answersDB.size() != 20) {
+                    return;
+                }
+                final Iterator<Answer> iterator = answersDB.iterator();
+                for (int i = 0; i < answers.length; i++) {
+                    for (int j = 0; j < answers[i].length && iterator.hasNext(); j++) {
+                        answers[i][j] = iterator.next().getAnswer();
+                    }
+                }
+                oldTarget = true;
+                this.id = id;
+            }).start();
+            textName.setText(target);
+            viewSwitcher.showNext();
+            setEnabled(true);
+        }
 
         for (int i = 0; i < fragments.length; i++) {
             final int x = i;
@@ -83,12 +113,18 @@ public class TargetActivity extends AppCompatActivity {
                 intent.putExtra(TestActivity.QUESTIONS_ARGS[i], answers[i]);
 
                 //save data to total array
-                System.arraycopy(answers[i], 0, answersTotalData, i * answers[0].length, answers[i].length);
+                System.arraycopy(answers[i],
+                                 0,
+                                 answersTotalData,
+                                 i * answers[0].length,
+                                 answers[i].length);
             }
 
-            for (int i = 0; i < answersTotalData.length; i++){
-                if(answersTotalData[i] == null){
-                    Toast.makeText(TargetActivity.this, "Введите все ответы " + (++i), Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < answersTotalData.length; i++) {
+                if (answersTotalData[i] == null) {
+                    Toast.makeText(TargetActivity.this,
+                                   "Введите все ответы " + (++i),
+                                   Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -131,6 +167,11 @@ public class TargetActivity extends AppCompatActivity {
 
             final Target target = Target.of(targetName, System.currentTimeMillis());
             //create DAO
+
+            if(oldTarget){
+                target.setId(id);
+            }
+
             long ownerId = Target.save(target, targetDAO);
             final Answer[] answers = new Answer[strAnswers.length];
             for (int i = 0; i < strAnswers.length; i++) {

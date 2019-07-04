@@ -11,7 +11,7 @@ import com.develop.loginov.mytarget.database.AnswerDAO;
 @Entity(tableName = "answers")
 public class Answer {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
 
     private long ownerId;
     private String answer;
@@ -30,11 +30,11 @@ public class Answer {
         dao.insertOrUpdate(answer);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package com.develop.loginov.mytarget.controller.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.adapter.TargetAdapter;
+import com.develop.loginov.mytarget.controller.activity.TargetActivity;
 import com.develop.loginov.mytarget.controller.application.App;
 import com.develop.loginov.mytarget.model.Target;
 
@@ -61,13 +63,20 @@ public class TargetListFragment extends Fragment {
 
         textLogin.setText(login);
         final List<Target> targets = new ArrayList<>();
-        final RecyclerView.Adapter adapter = new TargetAdapter(targets);
+        final RecyclerView.Adapter adapter = new TargetAdapter(targets, (position, v) -> {
+            final Target target = targets.get(position);
+            final Intent intent = new Intent(getContext(), TargetActivity.class);
+
+            intent.putExtra(TargetActivity.TARGET_ARG, target.getName());
+            intent.putExtra(TargetActivity.TARGET_ID_ARG, target.getId());
+
+            startActivity(intent);
+        });
         setDataToList(targets, adapter);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
                                                               RecyclerView.VERTICAL,
                                                               false));
-//        recyclerView.setHasFixedSize(true);
     }
 
     private void setDataToList(final @NonNull List<Target> targets,

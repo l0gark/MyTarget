@@ -21,9 +21,12 @@ import java.util.List;
 public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder> {
     private Context context;
     private final List<Target> targets;
+    private final OnItemClickListener onItemClickListener;
 
-    public TargetAdapter(final List<Target> targets) {
+    public TargetAdapter(@NonNull final List<Target> targets,
+                         @NonNull final OnItemClickListener onItemClickListener) {
         this.targets = targets;
+        this.onItemClickListener = onItemClickListener;
         Collections.sort(targets, (t1, t2) -> -Long.compare(t1.getTime(), t2.getTime()));
     }
 
@@ -34,6 +37,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
         final View view = LayoutInflater.from(context).inflate(R.layout.item_target, null, false);
         final ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                                                                   ViewGroup.LayoutParams.WRAP_CONTENT);
+
         view.setLayoutParams(layoutParams);
         return new ViewHolder(view);
     }
@@ -41,6 +45,8 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(targets.get(position));
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(position,
+                                                                                holder.itemView));
     }
 
     @Override
@@ -54,19 +60,22 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
         private final int GREEN = context.getResources().getColor(R.color.green);
         private final int RED = context.getResources().getColor(R.color.red);
 
-        private final TextView teztTarget;
+        private final TextView textTarget;
         private final TextView textResult;
         private final TextView textDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            teztTarget = itemView.findViewById(R.id.item_target__name);
+            textTarget = itemView.findViewById(R.id.item_target__name);
             textResult = itemView.findViewById(R.id.item_target__result);
             textDate = itemView.findViewById(R.id.item_target__date);
         }
 
         private void bind(final Target target) {
-            teztTarget.setText(target.getName());
+            textTarget.setText(target.getName());
+            textTarget.setOnClickListener(v -> {
+
+            });
 
             if (target.getProbability() > 0) {
                 textResult.setText(WILL_DONE);
