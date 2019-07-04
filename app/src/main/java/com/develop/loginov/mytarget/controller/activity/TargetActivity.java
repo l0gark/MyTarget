@@ -71,7 +71,7 @@ public class TargetActivity extends AppCompatActivity {
 
 
         answers = new String[4][5];
-
+        setEnabled(false);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             final String target = extras.getString(TARGET_ARG);
@@ -157,7 +157,7 @@ public class TargetActivity extends AppCompatActivity {
         viewSwitcher.setInAnimation(slideInLeft);
         viewSwitcher.setOutAnimation(slideOutRight);
 
-        setEnabled(false);
+
     }
 
     private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {

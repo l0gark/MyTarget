@@ -57,21 +57,6 @@ public class Target {
         return new Target(name, 0, time);
     }
 
-    public static List<Target> createTargets() {
-        long time = System.currentTimeMillis();
-        final Random random = new Random();
-        int value = Integer.MAX_VALUE;
-        return Arrays.asList(Target.of("Target1", 100, time + random.nextInt(value) - value / 2),
-                             Target.of("Target2", 80, time + random.nextInt(value) - value / 2),
-                             Target.of("Target3", -10, time + random.nextInt(value) - value / 2),
-                             Target.of("Target4", 50, time + random.nextInt(value) - value / 2),
-                             Target.of("Target5", 40, time + random.nextInt(value) - value / 2),
-                             Target.of("Target6", 50, time + random.nextInt(value) - value / 2),
-                             Target.of("Target7", -20, time + random.nextInt(value) - value / 2),
-                             Target.of("Target8", -20, time + random.nextInt(value) - value / 2),
-                             Target.of("Target9", 100, time + random.nextInt(value) - value / 2));
-    }
-
     public long getId() {
         return id;
     }

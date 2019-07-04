@@ -73,9 +73,6 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
 
         private void bind(final Target target) {
             textTarget.setText(target.getName());
-            textTarget.setOnClickListener(v -> {
-
-            });
 
             if (target.getProbability() > 0) {
                 textResult.setText(WILL_DONE);
