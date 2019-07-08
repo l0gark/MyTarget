@@ -18,13 +18,14 @@
 
         android:gravity="center"
         android:maxLines="3"
-
         android:minLines="3"
         android:padding="@dimen/def_half_margin"
 
         android:text="@string/question1"
         android:textColor="@color/black"
-        android:textSize="@dimen/title_text_size" />
+        android:textSize="13sp"
+        android:fontFamily="@font/gothic"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragment_question__fab"

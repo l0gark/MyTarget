@@ -20,6 +20,7 @@
 
         android:gravity="center"
         android:maxLines="3"
+        android:fontFamily="@font/gothic"
 
         android:minLines="3"
         android:padding="@dimen/def_half_margin"
@@ -63,6 +64,8 @@
                 android:layout_marginTop="@dimen/def_margin"
                 android:layout_marginEnd="@dimen/button_horizon_margin"
                 android:layout_marginBottom="@dimen/def_margin"
+                android:fontFamily="@font/gothic"
+                android:textStyle="bold"
                 android:text="@string/done" />
 
             <com.google.android.material.button.MaterialButton
@@ -74,6 +77,8 @@
                 android:layout_marginTop="@dimen/def_margin"
                 android:layout_marginEnd="@dimen/button_horizon_margin"
                 android:layout_marginBottom="@dimen/def_margin"
+                android:fontFamily="@font/gothic"
+                android:textStyle="bold"
                 android:text="@string/help" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

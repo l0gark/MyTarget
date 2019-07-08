@@ -21,6 +21,8 @@
             android:imeOptions="flagNoFullscreen"
             android:inputType="textShortMessage"
             android:padding="@dimen/def_margin"
+            android:fontFamily="@font/gothic"
+
             android:layout_margin="@dimen/def_margin"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />

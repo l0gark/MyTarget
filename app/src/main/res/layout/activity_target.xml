@@ -50,7 +50,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/gothic"
                     android:hint="@string/my_target"
+
                     android:inputType="textShortMessage"
                     android:textColor="@color/black"
                     android:textSize="@dimen/big_title_text_size" />
@@ -76,6 +78,7 @@
             android:layout_height="match_parent"
 
             android:layout_margin="@dimen/def_margin"
+            android:fontFamily="@font/gothic"
             android:gravity="center"
             android:text="@string/target_sample"
             android:textAlignment="center"
@@ -89,100 +92,93 @@
         android:layout_width="0dp"
         android:layout_height="3dp"
 
-        android:layout_marginStart="@dimen/button_horizon_margin"
-        android:layout_marginEnd="@dimen/button_horizon_margin"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
 
         android:background="@android:color/black"
 
         app:layout_constraintBottom_toTopOf="@id/activity_target__attention"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher"
-       />
+        app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher" />
 
     <View
         android:id="@+id/activity_target__vertical_line"
         android:layout_width="3dp"
         android:layout_height="0dp"
 
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
 
         android:background="@android:color/black"
 
         app:layout_constraintBottom_toTopOf="@id/activity_target__attention"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher"
-        />
+        app:layout_constraintTop_toBottomOf="@id/activity_target__view_switcher" />
 
     <fragment
         android:id="@+id/activity_target__question1"
         android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-        tools:layout="@layout/fragment_question"
-
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="@dimen/def_margin"
-        android:layout_marginTop="@dimen/def_margin"
         android:layout_marginEnd="@dimen/def_half_margin"
+        android:layout_marginTop="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_half_margin"
-
         app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
+
         app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
         app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
-        app:name="@string/question1" />
+        app:name="@string/question1"
+        tools:layout="@layout/fragment_question" />
 
     <fragment
         android:id="@+id/activity_target__question2"
         android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-        tools:layout="@layout/fragment_question"
-
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
 
-        android:layout_marginStart="@dimen/def_half_margin"
         android:layout_marginTop="@dimen/def_margin"
-        android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_half_margin"
-
+        android:layout_marginStart="@dimen/def_half_margin"
         app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
+
         app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
         app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
+        app:name="@string/question2"
 
-        app:name="@string/question2" />
+        tools:layout="@layout/fragment_question" />
 
     <fragment
         android:id="@+id/activity_target__question3"
         android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
-        tools:layout="@layout/fragment_question"
-
         android:layout_width="0dp"
+
         android:layout_height="wrap_content"
-
-
-        android:layout_marginStart="@dimen/def_margin"
-        android:layout_marginTop="@dimen/def_half_margin"
         android:layout_marginEnd="@dimen/def_half_margin"
+        android:layout_marginTop="@dimen/def_half_margin"
         android:layout_marginBottom="@dimen/def_margin"
-
         app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
+
         app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
         app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
+        app:name="@string/question3"
 
-        app:name="@string/question3" />
+        tools:layout="@layout/fragment_question" />
 
     <fragment
         android:id="@+id/activity_target__question4"
         android:name="com.develop.loginov.mytarget.controller.fragment.QuestionFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/def_half_margin"
 
+        android:layout_marginStart="@dimen/def_half_margin"
         android:layout_marginTop="@dimen/def_half_margin"
-        app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
         app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
+        app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
 
         app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
         app:name="@string/question4"
@@ -200,12 +196,12 @@
         android:layout_marginEnd="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_half_margin"
 
+        android:fontFamily="@font/gothic"
         android:gravity="center"
         android:text="@string/attention_answer"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/title_text_size"
-
         app:layout_constraintBottom_toTopOf="@id/activity_target__button_next"
         app:layout_constraintTop_toBottomOf="@id/activity_target__vertical_line" />
 
@@ -219,7 +215,9 @@
         android:layout_marginEnd="@dimen/button_horizon_margin"
         android:layout_marginBottom="@dimen/def_margin"
 
+        android:fontFamily="@font/gothic"
         android:text="@string/next"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_target__attention" />
 

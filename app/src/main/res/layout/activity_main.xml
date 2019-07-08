@@ -31,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/colorPrimary"
-        app:fabAlignmentMode="center"
-        app:fabCradleMargin="5dp"
+        app:fabAlignmentMode="end"
+        app:fabCradleMargin="3dp"
 
 
         app:navigationIcon="@drawable/menu_white_24x24" />

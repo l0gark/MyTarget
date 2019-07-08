@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_app_bar, menu);
+//        getMenuInflater().inflate(R.menu.bottom_app_bar, menu);
         return true;
     }
 
@@ -71,11 +71,6 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
                 break;
             case R.id.nav_menu__feedback:
                 FragmentHelper.changeFragment(FeedBackFragment.newInstance(),
-                                              getSupportFragmentManager(),
-                                              R.id.activity_main__container);
-                break;
-            case R.id.nav_menu__question:
-                FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
                                               getSupportFragmentManager(),
                                               R.id.activity_main__container);
                 break;

@@ -15,10 +15,10 @@
             android:icon="@drawable/ic_baseline_alternate_email_24px"
             android:title="@string/return_connection" />
 
-        <item
-            android:id="@+id/nav_menu__question"
-            android:icon="@drawable/ic_baseline_help_outline_24px"
-            android:title="@string/question_answer" />
+        <!--<item-->
+            <!--android:id="@+id/nav_menu__question"-->
+            <!--android:icon="@drawable/ic_baseline_help_outline_24px"-->
+            <!--android:title="@string/question_answer" />-->
 
         <item
             android:id="@+id/nav_menu__logout"

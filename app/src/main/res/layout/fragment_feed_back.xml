@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/def_margin"
                 android:padding="10dp"
+                android:fontFamily="@font/gothic"
 
 
                 android:background="@android:color/white"
@@ -42,6 +43,7 @@
 
             android:layout_margin="@dimen/def_margin"
             android:padding="10dp"
+            android:fontFamily="@font/gothic"
 
             android:background="@android:color/white"
 
