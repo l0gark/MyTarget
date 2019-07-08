@@ -1,8 +1,11 @@
 package com.develop.loginov.mytarget.controller.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.develop.loginov.mytarget.R;
@@ -38,9 +42,7 @@ public class TargetActivity extends AppCompatActivity {
 
     private EditText editName;
     private TextView textAttention;
-    private TextView textName;
     private Button buttonNext;
-    private ViewSwitcher viewSwitcher;
 
     private QuestionFragment[] fragments;
     private QuestionDialogFragment dialogFragment;
@@ -57,9 +59,6 @@ public class TargetActivity extends AppCompatActivity {
 
         textAttention = findViewById(R.id.activity_target__attention);
         buttonNext = findViewById(R.id.activity_target__button_next);
-        final FloatingActionButton fabOk = findViewById(R.id.activity_target__fab_ok);
-        viewSwitcher = findViewById(R.id.activity_target__view_switcher);
-        textName = findViewById(R.id.activity_target__target_name_text);
         editName = findViewById(R.id.activity_target__target_name_edit_text);
 
         fragments = new QuestionFragment[4];
@@ -92,9 +91,8 @@ public class TargetActivity extends AppCompatActivity {
                 oldTarget = true;
                 this.id = id;
             }).start();
-            textName.setText(target);
-            viewSwitcher.showNext();
-            setEnabled(true);
+            editName.setText(target);
+            setEnabled(target != null && target.length() != 0);
         }
 
         for (int i = 0; i < fragments.length; i++) {
@@ -128,7 +126,7 @@ public class TargetActivity extends AppCompatActivity {
                     return;
                 }
             }
-            final String targetName = textName.getText().toString();
+            final String targetName = editName.getText().toString();
             saveTarget(targetName, answersTotalData);
 
             intent.putExtra(TARGET_ARG, targetName);
@@ -136,28 +134,31 @@ public class TargetActivity extends AppCompatActivity {
             finish();
         });
 
-        fabOk.setOnClickListener(v -> {
-            if (TextUtils.isEmpty(editName.getText())) {
-                return;
+        editName.setOnFocusChangeListener((v, hasFocus) -> {
+            if(hasFocus){
+                editName.setHint("");
+            } else {
+                editName.setHint(R.string.my_target);
             }
-            textName.setText(editName.getText().toString());
-            viewSwitcher.showNext();
-            hideKeyBoard(this);
-            setEnabled(true);
         });
-        textName.setOnClickListener(v -> {
-            setEnabled(false);
-            viewSwitcher.showNext();
+        editName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s == null || s.length() == 0) {
+                    setEnabled(false);
+                } else {
+                    setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
         });
-
-        final Animation slideInLeft = AnimationUtils.loadAnimation(this,
-                                                                   android.R.anim.slide_in_left);
-        final Animation slideOutRight = AnimationUtils.loadAnimation(this,
-                                                                     android.R.anim.slide_out_right);
-        viewSwitcher.setInAnimation(slideInLeft);
-        viewSwitcher.setOutAnimation(slideOutRight);
-
-
     }
 
     private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {
@@ -168,7 +169,7 @@ public class TargetActivity extends AppCompatActivity {
             final Target target = Target.of(targetName, System.currentTimeMillis());
             //create DAO
 
-            if(oldTarget){
+            if (oldTarget) {
                 target.setId(id);
             }
 
