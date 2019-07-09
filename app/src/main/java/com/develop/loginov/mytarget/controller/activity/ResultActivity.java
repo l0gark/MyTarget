@@ -1,17 +1,22 @@
 package com.develop.loginov.mytarget.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.develop.loginov.mytarget.R;
+import com.develop.loginov.mytarget.controller.fragment.FeedBackFragment;
 import com.develop.loginov.mytarget.controller.fragment.ResultFragment;
+import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
+import com.google.android.material.bottomappbar.BottomAppBar;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
     public static final String[] BOLD_ARGS = {"bold1", "bold2", "bold3", "bold4"};
     public static final String PROBABILITY_ARG = "probability";
 
@@ -42,6 +47,11 @@ public class ResultActivity extends AppCompatActivity {
 
         final TextView textResult = findViewById(R.id.activity_result__target_done);
         final TextView textTarget = findViewById(R.id.activity_result__target);
+        final BottomAppBar bottomAppBar = findViewById(R.id.activity_result__bottom_app_bar);
+
+        if (getSupportActionBar() == null) {
+            setSupportActionBar(bottomAppBar);
+        }
 
         int probability = extras.getInt(PROBABILITY_ARG);
         if (probability > 0) {
@@ -65,5 +75,32 @@ public class ResultActivity extends AppCompatActivity {
         findViewById(R.id.activity_result__button_why).setOnClickListener(v -> {
             Toast.makeText(ResultActivity.this, "Потому что !", Toast.LENGTH_SHORT).show();
         });
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+                NavigationMenuDialog bottomSheetDialogFragment = new NavigationMenuDialog();
+                bottomSheetDialogFragment.setOnNavigationItemClickListener(this);
+                bottomSheetDialogFragment.show(getSupportFragmentManager(), "BOTTOM_MENU_TAG");
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void clickItem(int itemId) {
+        switch (itemId) {
+            case R.id.nav_menu__feedback:
+                DialogFragment dialogFragment = FeedBackFragment.newInstance();
+                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
+                break;
+            case R.id.nav_menu__logout:
+                finishAffinity();
+        }
     }
 }

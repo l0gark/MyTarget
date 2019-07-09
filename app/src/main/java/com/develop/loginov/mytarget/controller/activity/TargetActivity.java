@@ -1,40 +1,40 @@
 package com.develop.loginov.mytarget.controller.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.controller.application.App;
+import com.develop.loginov.mytarget.controller.fragment.FeedBackFragment;
 import com.develop.loginov.mytarget.controller.fragment.QuestionFragment;
+import com.develop.loginov.mytarget.controller.fragment.TargetListFragment;
 import com.develop.loginov.mytarget.database.AnswerDAO;
 import com.develop.loginov.mytarget.database.TargetDAO;
+import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.develop.loginov.mytarget.dialog.QuestionDialogFragment;
+import com.develop.loginov.mytarget.helper.FragmentHelper;
 import com.develop.loginov.mytarget.model.Answer;
 import com.develop.loginov.mytarget.model.Target;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static com.develop.loginov.mytarget.helper.KeyBoardHelper.hideKeyBoard;
-
-public class TargetActivity extends AppCompatActivity {
+public class TargetActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
     public static final String TARGET_ARG = "TARGET";
     public static final String TARGET_ID_ARG = "TARGET_ID";
     private boolean oldTarget = false;
@@ -60,6 +60,12 @@ public class TargetActivity extends AppCompatActivity {
         textAttention = findViewById(R.id.activity_target__attention);
         buttonNext = findViewById(R.id.activity_target__button_next);
         editName = findViewById(R.id.activity_target__target_name_edit_text);
+        FloatingActionButton fabTargets = findViewById(R.id.activity_target__fab_targets);
+        BottomAppBar bottomAppBar = findViewById(R.id.activity_target__bottom_app_bar);
+
+        if (getSupportActionBar() == null) {
+            setSupportActionBar(bottomAppBar);
+        }
 
         fragments = new QuestionFragment[4];
         fragments[0] = (QuestionFragment) getSupportFragmentManager().findFragmentById(R.id.activity_target__question1);
@@ -135,12 +141,18 @@ public class TargetActivity extends AppCompatActivity {
         });
 
         editName.setOnFocusChangeListener((v, hasFocus) -> {
-            if(hasFocus){
+            if (hasFocus) {
                 editName.setHint("");
             } else {
                 editName.setHint(R.string.my_target);
             }
         });
+
+        fabTargets.setOnClickListener(v -> {
+            DialogFragment dialogFragment = TargetListFragment.newInstance("l0gark");
+            dialogFragment.show(getSupportFragmentManager(), "TARGET_LIST_TAG");
+        });
+
         editName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -160,6 +172,32 @@ public class TargetActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+                NavigationMenuDialog bottomSheetDialogFragment = new NavigationMenuDialog();
+                bottomSheetDialogFragment.setOnNavigationItemClickListener(this);
+                bottomSheetDialogFragment.show(getSupportFragmentManager(), "BOTTOM_MENU_TAG");
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void clickItem(int itemId) {
+        switch (itemId) {
+            case R.id.nav_menu__feedback:
+                DialogFragment dialogFragment = FeedBackFragment.newInstance();
+                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
+                break;
+            case R.id.nav_menu__logout:
+                finishAffinity();
+        }
+    }
+
 
     private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {
         new Thread(() -> {

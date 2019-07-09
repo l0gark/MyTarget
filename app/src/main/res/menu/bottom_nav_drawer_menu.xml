@@ -5,10 +5,10 @@
     <group
 
         android:checkableBehavior="none">
-        <item
-            android:id="@+id/nav_menu__targets"
-            android:icon="@drawable/ic_ok"
-            android:title="@string/my_targets" />
+        <!--<item-->
+            <!--android:id="@+id/nav_menu__targets"-->
+            <!--android:icon="@drawable/ic_ok"-->
+            <!--android:title="@string/my_targets" />-->
 
         <item
             android:id="@+id/nav_menu__feedback"

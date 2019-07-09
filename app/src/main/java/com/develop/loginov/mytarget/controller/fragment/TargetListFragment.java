@@ -6,13 +6,17 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.develop.loginov.mytarget.R;
@@ -24,7 +28,7 @@ import com.develop.loginov.mytarget.model.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TargetListFragment extends Fragment {
+public class TargetListFragment extends DialogFragment {
     private static final String LOGIN_ARG = "LOGIN";
     private String login;
 
@@ -47,6 +51,17 @@ public class TargetListFragment extends Fragment {
         } else {
             login = "Пользователь не зарегистрирован!";
         }
+
+        if(getDialog() == null || getDialog().getWindow() == null){
+            Log.d("TARGET_LIST_TAG", "Dialog attrs aren`t setting");
+            return;
+        }
+        Log.d("TARGET_LIST_TAG", "Dialog attrs are setting");
+        WindowManager.LayoutParams p = getDialog().getWindow().getAttributes();
+        p.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        p.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        getDialog().getWindow().setGravity(Gravity.CENTER);
+        getDialog().getWindow().setAttributes(p);
     }
 
     @Override
@@ -58,10 +73,10 @@ public class TargetListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final TextView textLogin = view.findViewById(R.id.fragment_target_list__login);
+//        final TextView textLogin = view.findViewById(R.id.fragment_target_list__login);
         final RecyclerView recyclerView = view.findViewById(R.id.fragment_target_list__recycler_view);
 
-        textLogin.setText(login);
+//        textLogin.setText(login);
         final List<Target> targets = new ArrayList<>();
         final RecyclerView.Adapter adapter = new TargetAdapter(targets, (position, v) -> {
             final Target target = targets.get(position);
@@ -71,6 +86,7 @@ public class TargetListFragment extends Fragment {
             intent.putExtra(TargetActivity.TARGET_ID_ARG, target.getId());
 
             startActivity(intent);
+            dismiss();
         });
         setDataToList(targets, adapter);
         recyclerView.setAdapter(adapter);

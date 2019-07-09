@@ -34,11 +34,9 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        final View view = LayoutInflater.from(context).inflate(R.layout.item_target, null, false);
-        final ViewGroup.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                                                  ViewGroup.LayoutParams.WRAP_CONTENT);
-
-        view.setLayoutParams(layoutParams);
+        final View view = LayoutInflater.from(context).inflate(R.layout.item_target, parent, false);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(lp);
         return new ViewHolder(view);
     }
 

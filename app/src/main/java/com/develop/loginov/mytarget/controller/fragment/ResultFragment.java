@@ -37,23 +37,11 @@ public class ResultFragment extends Fragment {
         if (getContext() == null) {
             return;
         }
-        String[] dublObjects = new String[objects.length << 1];
-        boolean[] dublBolds = new boolean[boldObjects.length << 1];
-        for (int i = 0; i < dublBolds.length; i++){
-            dublObjects[i] = objects[i % objects.length];
-            dublBolds[i] = boldObjects[i % boldObjects.length];
-        }
-
 
         final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
                                                               R.layout.item_answer,
-                                                              dublObjects,
-                                                              dublBolds);
-//
-//        final BoldArrayAdapter adapter = new BoldArrayAdapter(getContext(),
-//                                                              R.layout.item_answer,
-//                                                              objects,
-//                                                              boldObjects);
+                                                              objects,
+                                                              boldObjects);
         listView.setAdapter(adapter);
     }
 }

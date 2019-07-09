@@ -63,12 +63,12 @@ public class MainActivity extends AppCompatActivity implements NavigationMenuDia
     public void clickItem(int itemId) {
 
         switch (itemId) {
-            case R.id.nav_menu__targets:
-                FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
-                                              getSupportFragmentManager(),
-                                              R.id.activity_main__container);
+//            case R.id.nav_menu__targets:
+//                FragmentHelper.changeFragment(TargetListFragment.newInstance(LOGIN),
+//                                              getSupportFragmentManager(),
+//                                              R.id.activity_main__container);
 
-                break;
+//                break;
             case R.id.nav_menu__feedback:
                 FragmentHelper.changeFragment(FeedBackFragment.newInstance(),
                                               getSupportFragmentManager(),

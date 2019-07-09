@@ -38,7 +38,6 @@
     <string name="action_profile">profile</string>
     <string name="action_settings">settings</string>
     <string name="action_search">search</string>
-    <string name="my_targets">Мои цели</string>
     <string name="return_connection">Обратная связь</string>
     <string name="question_answer">Вопрос-Ответ</string>
     <string name="quit">Выйти</string>
@@ -52,5 +51,6 @@
     <string name="send">Отправить</string>
     <string name="your_email">Введите Вашу почту</string>
     <string name="enter_mail">Введите сообщение</string>
+    <string name="my_targets">Мои цели</string>
 
 </resources>

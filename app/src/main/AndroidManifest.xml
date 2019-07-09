@@ -8,16 +8,24 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity
+            android:screenOrientation="portrait"
             android:name=".controller.activity.MainActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".controller.activity.ResultActivity" />
-        <activity android:name=".controller.activity.TestActivity" />
         <activity
+            android:screenOrientation="portrait"
+            android:name=".controller.activity.ResultActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".controller.activity.TestActivity" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".controller.activity.TargetActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".controller.activity.LaunchActivity"
             android:label="@string/app_name"
             android:theme="@style/AppThemeNoActionBar">

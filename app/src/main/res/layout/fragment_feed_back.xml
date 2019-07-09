@@ -2,12 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="300dp"
+    android:minHeight="200dp"
     android:orientation="vertical"
     tools:context=".controller.fragment.FeedBackFragment"
     android:layout_marginTop="15dp"
     android:layout_marginStart="@dimen/def_margin"
     android:layout_marginEnd="@dimen/def_margin"
+    android:gravity="center"
     >
 
     <com.google.android.material.textfield.TextInputLayout
@@ -48,14 +51,14 @@
             android:background="@android:color/white"
 
             android:hint="@string/enter_mail"
-            android:inputType="textLongMessage"
+            android:inputType="textMultiLine"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fragment_feed_back__send"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:text="@string/send" />

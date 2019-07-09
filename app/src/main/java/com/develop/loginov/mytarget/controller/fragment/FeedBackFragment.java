@@ -5,18 +5,21 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.develop.loginov.mytarget.R;
 
-public class FeedBackFragment extends Fragment {
+public class FeedBackFragment extends DialogFragment {
     private static final String ORG_EMAIL = "l0gark@ya.ru";
 
     public static FeedBackFragment newInstance() {
@@ -27,6 +30,19 @@ public class FeedBackFragment extends Fragment {
     }
 
     public FeedBackFragment() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(getDialog() == null || getDialog().getWindow() == null){
+            return;
+        }
+        WindowManager.LayoutParams p = getDialog().getWindow().getAttributes();
+        p.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        p.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        getDialog().getWindow().setGravity(Gravity.CENTER);
+        getDialog().getWindow().setAttributes(p);
     }
 
     @Override
@@ -66,7 +82,7 @@ public class FeedBackFragment extends Fragment {
 
     }
 
-    public static boolean isValidEmail(final CharSequence target) {
+    private static boolean isValidEmail(final CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }

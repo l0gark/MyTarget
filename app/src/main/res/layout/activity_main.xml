@@ -36,6 +36,4 @@
 
 
         app:navigationIcon="@drawable/menu_white_24x24" />
-    <!--  app:hideOnScroll="true"
-        app:layout_scrollFlags="scroll|enterAlways"-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

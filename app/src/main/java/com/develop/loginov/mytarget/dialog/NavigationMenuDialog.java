@@ -8,14 +8,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.develop.loginov.mytarget.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class NavigationMenuDialog extends BottomSheetDialogFragment {
+public class NavigationMenuDialog extends DialogFragment {
 
-    OnNavigationItemClickListener onNavigationItemClickListener;
+    private OnNavigationItemClickListener onNavigationItemClickListener;
 
     @Nullable
     @Override
