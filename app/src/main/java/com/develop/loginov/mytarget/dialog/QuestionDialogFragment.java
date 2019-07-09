@@ -20,6 +20,7 @@ public class QuestionDialogFragment extends DialogFragment {
 
     private String[] answers;
     private AnswerAdapter adapter;
+    private OnDoneClickListener onDoneClickListener;
 
     public QuestionDialogFragment() {
     }
@@ -51,14 +52,22 @@ public class QuestionDialogFragment extends DialogFragment {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext(),
                                                                 RecyclerView.VERTICAL,
                                                                 false);
-//        lm.setAutoMeasureEnabled(true);
         listView.setLayoutManager(lm);
         listView.setNestedScrollingEnabled(false);
         listView.setHasFixedSize(true);
 
         buttonHelp.setOnClickListener(v -> new HelpAnswerDialog().show(getChildFragmentManager(),
                                                                        "Help"));
-        buttonDone.setOnClickListener(v -> dismiss());
+        buttonDone.setOnClickListener(v -> {
+            if (onDoneClickListener != null) {
+                onDoneClickListener.doneClick();
+            }
+            dismiss();
+        });
+    }
+
+    public void setOnDoneClickListener(final OnDoneClickListener onDoneClickListener) {
+        this.onDoneClickListener = onDoneClickListener;
     }
 
     public void setAnswers(@NonNull final String[] answers) {
@@ -68,8 +77,7 @@ public class QuestionDialogFragment extends DialogFragment {
         this.answers = answers;
     }
 
-//    @Override
-//    public int getTheme() {
-//        return R.style.PauseDialog;
-//    }
+   public interface OnDoneClickListener {
+        void doneClick();
+    }
 }

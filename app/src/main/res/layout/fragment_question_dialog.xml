@@ -1,85 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 
-    android:layout_margin="@dimen/def_half_margin"
-    android:animateLayoutChanges="true"
-    android:orientation="vertical"
-    app:cardElevation="3dp"
     android:background="@android:color/white"
+    android:orientation="vertical"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="5dp"
+    app:cardCornerRadius="0dp"
     tools:context=".dialog.QuestionDialogFragment">
 
 
-    <TextView
-        android:id="@+id/fragment_question_dialog__name"
+    <LinearLayout
+        android:padding="@dimen/def_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
 
-        android:gravity="center"
-        android:maxLines="3"
-        android:fontFamily="@font/gothic"
-
-        android:minLines="3"
-        android:padding="@dimen/def_half_margin"
-
-        android:text="@string/question1"
-        android:textColor="@color/black"
-        android:textSize="@dimen/title_text_size" />
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/fragment_question_dialog__nested_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:isScrollContainer="true"
-        android:measureAllChildren="true">
-
-        <LinearLayout
-            android:id="@+id/fragment_question_dialog__additional_layout"
+        <TextView
+            android:id="@+id/fragment_question_dialog__name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_question_dialog__list"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:maxLines="3"
+
+            android:minLines="3"
+            android:padding="@dimen/def_half_margin"
+
+            android:text="@string/question1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/title_text_size" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/fragment_question_dialog__nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:measureAllChildren="true">
+
+            <LinearLayout
+                android:id="@+id/fragment_question_dialog__additional_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/def_margin"
-                android:fastScrollEnabled="true"
-                android:scrollbarStyle="insideInset"
-                android:scrollbars="vertical"
-                android:splitMotionEvents="false"
+                android:orientation="vertical">
 
-                android:verticalScrollbarPosition="right"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_answer" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_question_dialog__list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/def_margin"
+                    android:fastScrollEnabled="true"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"
+                    android:splitMotionEvents="false"
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragment_question_dialog__button_done"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/button_horizon_margin"
-                android:layout_marginTop="@dimen/def_margin"
-                android:layout_marginEnd="@dimen/button_horizon_margin"
-                android:layout_marginBottom="@dimen/def_margin"
-                android:fontFamily="@font/gothic"
-                android:textStyle="bold"
-                android:text="@string/done" />
+                    android:verticalScrollbarPosition="right"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_answer" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/fragment_question_dialog__button_help"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragment_question_dialog__button_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/button_horizon_margin"
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:layout_marginEnd="@dimen/button_horizon_margin"
+                    android:layout_marginBottom="@dimen/def_margin"
+                    android:fontFamily="@font/gothic"
+                    android:text="@string/done"
+                    android:textStyle="bold" />
 
-                android:layout_marginStart="@dimen/button_horizon_margin"
-                android:layout_marginTop="@dimen/def_margin"
-                android:layout_marginEnd="@dimen/button_horizon_margin"
-                android:layout_marginBottom="@dimen/def_margin"
-                android:fontFamily="@font/gothic"
-                android:textStyle="bold"
-                android:text="@string/help" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</LinearLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/fragment_question_dialog__button_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="@dimen/button_horizon_margin"
+                    android:layout_marginTop="@dimen/def_margin"
+                    android:layout_marginEnd="@dimen/button_horizon_margin"
+                    android:layout_marginBottom="@dimen/def_margin"
+                    android:fontFamily="@font/gothic"
+                    android:text="@string/help"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.controller.fragment.FeedBackFragment;
 import com.develop.loginov.mytarget.controller.fragment.ResultFragment;
+import com.develop.loginov.mytarget.controller.fragment.TargetListFragment;
 import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
@@ -75,18 +76,27 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
         findViewById(R.id.activity_result__button_why).setOnClickListener(v -> {
             Toast.makeText(ResultActivity.this, "Потому что !", Toast.LENGTH_SHORT).show();
         });
+
+        findViewById(R.id.activity_result__fab_targets).setOnClickListener(v ->{
+            DialogFragment dialogFragment = TargetListFragment.newInstance("l0gark");
+            dialogFragment.show(getSupportFragmentManager(), "TARGET_LIST_TAG");
+        });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final Intent intent = new Intent(this, TargetActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
-                NavigationMenuDialog bottomSheetDialogFragment = new NavigationMenuDialog();
-                bottomSheetDialogFragment.setOnNavigationItemClickListener(this);
-                bottomSheetDialogFragment.show(getSupportFragmentManager(), "BOTTOM_MENU_TAG");
+                final DialogFragment dialogFragment = FeedBackFragment.newInstance();
+                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
                 break;
         }
         return true;
@@ -94,13 +104,6 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
 
     @Override
     public void clickItem(int itemId) {
-        switch (itemId) {
-            case R.id.nav_menu__feedback:
-                DialogFragment dialogFragment = FeedBackFragment.newInstance();
-                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
-                break;
-            case R.id.nav_menu__logout:
-                finishAffinity();
-        }
+      //TODO menu
     }
 }

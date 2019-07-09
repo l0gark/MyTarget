@@ -2,6 +2,7 @@ package com.develop.loginov.mytarget.controller.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.develop.loginov.mytarget.model.Target;
 import com.develop.loginov.mytarget.model.TestIterator;
 import com.transitionseverywhere.ChangeText;
 
+import java.util.Arrays;
 import java.util.Set;
 
 public class TestActivity extends AppCompatActivity {
@@ -65,28 +67,37 @@ public class TestActivity extends AppCompatActivity {
         textTarget.setText(targetName);
 
         cardView1.setOnClickListener(v -> clickAnswer(iterator,
-                                                      competition,
-                                                      textAnswer2,
-                                                      transitionContainer));
+                                                      transitionContainer,
+                                                      true));
         cardView2.setOnClickListener(v -> clickAnswer(iterator,
-                                                      competition,
-                                                      textAnswer1,
-                                                      transitionContainer));
+                                                      transitionContainer,
+                                                      false));
     }
 
     private void clickAnswer(@NonNull final TestIterator iterator,
-                             @NonNull final Competition competition,
-                             @NonNull final TextView textView,
-                             @NonNull final ViewGroup transitionContainer) {
-        int memberIndex = iterator.getCurrentIndex();
+                             @NonNull final ViewGroup transitionContainer, final boolean first) {
+        int memberIndex = first ? iterator.getCurrentIndex(competition.getAnswer1()) : iterator.getCurrentIndex(competition.getAnswer2()) ;
+
         if (iterator.hasNext()) {
-            competition.winFirst(iterator.next(), memberIndex);
-            TransitionManager.beginDelayedTransition(transitionContainer,
-                                                     new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN).setDuration(
-                                                             500).setInterpolator(new DecelerateInterpolator()));
-            textView.setText(competition.getAnswer2());
+//            TransitionManager.beginDelayedTransition(transitionContainer,
+//                                                     new ChangeText().setChangeBehavior(ChangeText.CHANGE_BEHAVIOR_OUT_IN).setDuration(
+//                                                             500).setInterpolator(new DecelerateInterpolator()));
+            if (first) {
+                competition.winFirst(iterator.next(), memberIndex);
+                textAnswer2.setText(competition.getAnswer2());
+                Log.d("TEST_TAG", "win " + competition.getAnswer1() + " index = " + memberIndex);
+            } else {
+                competition.winSecond(iterator.next(), memberIndex);
+                textAnswer1.setText(competition.getAnswer1());
+                Log.d("TEST_TAG", "win " + competition.getAnswer2() + " index = " + memberIndex);
+            }
+
         } else {
-            competition.winFirst("End", memberIndex);
+            if (first) {
+                competition.winFirst("END", memberIndex);
+            } else {
+                competition.winSecond("END", memberIndex);
+            }
             toResults(matrix, competition.getWinners(), competition.getWinnerIndex());
         }
     }
@@ -101,17 +112,16 @@ public class TestActivity extends AppCompatActivity {
             }
         }
 
+        Log.d("TEST_TAG", "winner - " + winnerIndex);
         final int probability;
         switch (winnerIndex) {
             case 0:
                 probability = 100;
                 break;
             case 1:
-                probability = 40;
-                break;
             case 2:
             case 3:
-                probability = -100;
+                probability = 0;
                 break;
             default:
                 probability = 0;

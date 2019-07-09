@@ -54,7 +54,7 @@ public class Competition {
                 maxIndex = i;
             }
         }
-        return ++maxIndex;
+        return maxIndex;
     }
 
     public String getAnswer1() {

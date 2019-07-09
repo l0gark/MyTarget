@@ -49,4 +49,13 @@ public class TestIterator implements Iterator<String> {
     public int getCurrentIndex() {
         return next % indexes.length;
     }
+
+    public int getCurrentIndex(final String s) {
+        for (int i = 0; i < next; i++) {
+            if (list[i].equals(s)) {
+                return i % indexes.length;
+            }
+        }
+        return next % indexes.length;
+    }
 }

@@ -35,5 +35,6 @@
         android:layout_marginTop="@dimen/def_margin"
         android:layout_marginBottom="@dimen/def_margin"
         android:tint="@android:color/white"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:theme="@style/FABThemeGray"/>
 </LinearLayout>

@@ -1,7 +1,9 @@
 package com.develop.loginov.mytarget.controller.fragment;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.develop.loginov.mytarget.R;
@@ -60,6 +63,19 @@ public class QuestionFragment extends Fragment {
     public void setEnabled(final boolean enabled) {
         if (fab != null) {
             fab.setEnabled(enabled);
+        }
+    }
+
+    public void setDone(boolean done){
+        if(getContext() == null){
+            return;
+        }
+        if(done){
+            fab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.green)));
+            fab.setImageResource(R.drawable.ic_ok);
+        } else {
+            fab.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.gray)));
+            fab.setImageResource(android.R.drawable.ic_input_add);
         }
     }
 }

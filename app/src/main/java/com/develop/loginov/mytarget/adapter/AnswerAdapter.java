@@ -50,6 +50,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                holder.changeText(position);
             }
 
             @Override

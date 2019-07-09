@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,6 +106,14 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
             final int x = i;
             fragments[i].setOnClickListener(v -> {
                 dialogFragment.setAnswers(answers[x]);
+                dialogFragment.setOnDoneClickListener(() -> {
+                    boolean done = true;
+                    for (int j = 0; j < answers[x].length; j++) {
+                        done &= !TextUtils.isEmpty(answers[x][j]);
+                    }
+                    fragments[x].setDone(done);
+                });
+
                 dialogFragment.show(getSupportFragmentManager(), "Dialog");
             });
         }
@@ -124,10 +133,10 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
                                  answers[i].length);
             }
 
-            for (int i = 0; i < answersTotalData.length; i++) {
-                if (answersTotalData[i] == null) {
+            for (final String answersTotalDatum : answersTotalData) {
+                if (answersTotalDatum == null) {
                     Toast.makeText(TargetActivity.this,
-                                   "Введите все ответы " + (++i),
+                                   "Введите все ответы ",
                                    Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -177,10 +186,8 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
-                NavigationMenuDialog bottomSheetDialogFragment = new NavigationMenuDialog();
-                bottomSheetDialogFragment.setOnNavigationItemClickListener(this);
-                bottomSheetDialogFragment.show(getSupportFragmentManager(), "BOTTOM_MENU_TAG");
+                final DialogFragment dialogFragment = FeedBackFragment.newInstance();
+                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
                 break;
         }
         return true;
@@ -188,16 +195,8 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
 
     @Override
     public void clickItem(int itemId) {
-        switch (itemId) {
-            case R.id.nav_menu__feedback:
-                DialogFragment dialogFragment = FeedBackFragment.newInstance();
-                dialogFragment.show(getSupportFragmentManager(), "FEED_BACK_TAG");
-                break;
-            case R.id.nav_menu__logout:
-                finishAffinity();
-        }
+        //TODO menu
     }
-
 
     private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {
         new Thread(() -> {
@@ -218,6 +217,18 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
             }
             answerDAO.insertAll(answers);
         }).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        for (int i = 0; i < answers.length; i++) {
+            boolean done = true;
+            for (int j = 0; j < answers[i].length; j++) {
+                done &= !TextUtils.isEmpty(answers[i][j]);
+            }
+            fragments[i].setDone(done);
+        }
+        super.onBackPressed();
     }
 
     @Override
