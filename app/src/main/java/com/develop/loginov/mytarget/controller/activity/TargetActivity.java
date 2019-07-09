@@ -91,9 +91,12 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
                 }
                 final Iterator<Answer> iterator = answersDB.iterator();
                 for (int i = 0; i < answers.length; i++) {
+                    boolean done = true;
                     for (int j = 0; j < answers[i].length && iterator.hasNext(); j++) {
                         answers[i][j] = iterator.next().getAnswer();
+                        done &= !TextUtils.isEmpty(answers[i][j]);
                     }
+                    fragments[i].setDone(done);
                 }
                 oldTarget = true;
                 this.id = id;

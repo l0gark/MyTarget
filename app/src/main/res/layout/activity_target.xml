@@ -108,9 +108,10 @@
 
         android:layout_marginTop="@dimen/def_margin"
         android:layout_marginEnd="@dimen/def_half_margin"
-        android:layout_marginBottom="@dimen/def_half_margin"
-        app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
+        android:layout_marginBottom="8dp"
 
+        app:layout_constraintBottom_toTopOf="@+id/activity_target__question3"
+        app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
         app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
         app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
         app:name="@string/question1"
@@ -125,13 +126,14 @@
 
         android:layout_marginStart="@dimen/def_half_margin"
         android:layout_marginTop="@dimen/def_margin"
-        android:layout_marginBottom="@dimen/def_half_margin"
-        app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
+        android:layout_marginBottom="8dp"
 
+        app:layout_constraintBottom_toTopOf="@+id/activity_target__question4"
+        app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
         app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
+
         app:layout_constraintTop_toTopOf="@id/activity_target__vertical_line"
         app:name="@string/question2"
-
         tools:layout="@layout/fragment_question" />
 
     <fragment
@@ -142,13 +144,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/def_half_margin"
         android:layout_marginEnd="@dimen/def_half_margin"
-        android:layout_marginBottom="@dimen/def_margin"
+
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_target__vertical_line"
         app:layout_constraintEnd_toStartOf="@id/activity_target__vertical_line"
 
         app:layout_constraintStart_toStartOf="@id/activity_target__horizontal_line"
         app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
         app:name="@string/question3"
-
         tools:layout="@layout/fragment_question" />
 
     <fragment
@@ -159,13 +162,15 @@
 
         android:layout_marginStart="@dimen/def_half_margin"
         android:layout_marginTop="@dimen/def_half_margin"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_target__vertical_line"
+
         app:layout_constraintEnd_toEndOf="@id/activity_target__horizontal_line"
         app:layout_constraintStart_toEndOf="@id/activity_target__vertical_line"
 
+
         app:layout_constraintTop_toBottomOf="@id/activity_target__horizontal_line"
         app:name="@string/question4"
-
-
         tools:layout="@layout/fragment_question" />
 
     <TextView

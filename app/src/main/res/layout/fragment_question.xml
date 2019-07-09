@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
 
         android:gravity="center"
-        android:maxLines="3"
-        android:minLines="3"
+        android:maxLines="4"
+        android:minLines="4"
         android:padding="@dimen/def_half_margin"
 
         android:text="@string/question1"
