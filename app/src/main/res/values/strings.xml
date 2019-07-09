@@ -52,5 +52,7 @@
     <string name="your_email">Введите Вашу почту</string>
     <string name="enter_mail">Введите сообщение</string>
     <string name="my_targets">Мои цели</string>
+    <string name="first_text">Это приложение поможет Вам разобраться стоит ли тратить своё время и
+        силы на любую цель/задачу</string>
 
 </resources>
