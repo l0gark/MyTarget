@@ -16,6 +16,7 @@ public class Answer {
     private long ownerId;
     private String answer;
     private int index;
+    private boolean selected;
 
     public Answer(@NonNull final String answer, final long ownerId, final int index) {
         if (TextUtils.isEmpty(answer) || index < 0 || index >= 20) {
@@ -24,10 +25,19 @@ public class Answer {
         this.ownerId = ownerId;
         this.answer = answer;
         this.index = index;
+        selected = false;
     }
 
     public static void save(@NonNull final Answer answer, @NonNull final AnswerDAO dao) {
         dao.insertOrUpdate(answer);
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public long getId() {

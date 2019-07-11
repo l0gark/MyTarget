@@ -14,7 +14,7 @@ import java.util.List;
 
 @Dao
 public abstract class AnswerDAO {
-    @Query("SELECT * FROM answers WHERE ownerId= :targetId LIMIT 20")
+    @Query("SELECT * FROM answers WHERE ownerId= :targetId ORDER BY 'index' LIMIT 20 ")
     public abstract List<Answer> getAnswersById(final long targetId);
 
     @Insert

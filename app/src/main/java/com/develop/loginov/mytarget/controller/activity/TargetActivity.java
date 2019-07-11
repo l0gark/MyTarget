@@ -1,12 +1,10 @@
 package com.develop.loginov.mytarget.controller.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +24,6 @@ import com.develop.loginov.mytarget.database.AnswerDAO;
 import com.develop.loginov.mytarget.database.TargetDAO;
 import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.develop.loginov.mytarget.dialog.QuestionDialogFragment;
-import com.develop.loginov.mytarget.helper.FragmentHelper;
 import com.develop.loginov.mytarget.model.Answer;
 import com.develop.loginov.mytarget.model.Target;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -80,8 +77,8 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
         setEnabled(false);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            final String target = extras.getString(TARGET_ARG);
-            final long id = extras.getLong(TARGET_ID_ARG);
+            final String target = extras.getString(TARGET_ARG, "");
+            final long id = extras.getLong(TARGET_ID_ARG, -1);
 
             new Thread(() -> {
                 final AnswerDAO answerDAO = App.getInstance().getDataBase().answerDAO();
@@ -148,8 +145,8 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
             saveTarget(targetName, answersTotalData);
 
             intent.putExtra(TARGET_ARG, targetName);
+            intent.putExtra(TARGET_ID_ARG, id);
             startActivity(intent);
-            finish();
         });
 
         editName.setOnFocusChangeListener((v, hasFocus) -> {

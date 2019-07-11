@@ -1,12 +1,14 @@
 package com.develop.loginov.mytarget.model;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Competition {
+    private int counter;
     private final int[] results;
     private final Set<String> winners;
 
@@ -17,37 +19,44 @@ public class Competition {
         if (countMembers <= 0 || TextUtils.isEmpty(answer1) || TextUtils.isEmpty(answer2)) {
             throw new IllegalArgumentException();
         }
+        this.answer1 = answer1;
+        this.answer2 = answer2;
 
         results = new int[countMembers];
         winners = new HashSet<>(countMembers * 7);
-
         Arrays.fill(results, 0);
 
-        this.answer1 = answer1;
-        this.answer2 = answer2;
+        counter = 0;
     }
 
     public void winFirst(final String nextAnswer, final int memberIndex) {
         if (TextUtils.isEmpty(nextAnswer) || memberIndex < 0 || memberIndex >= results.length) {
             throw new IllegalArgumentException();
         }
-        winners.add(answer1);
-
         answer2 = nextAnswer;
-        results[memberIndex]++;
+
+        counter++;
+        if (counter % 4 == 0 || counter == 19) {
+            winners.add(answer1);
+            results[memberIndex]++;
+        }
     }
 
     public void winSecond(final String nextAnswer, final int memberIndex) {
         if (TextUtils.isEmpty(nextAnswer) || memberIndex < 0 || memberIndex >= results.length) {
             throw new IllegalArgumentException();
         }
-        winners.add(answer2);
-
         answer1 = nextAnswer;
-        results[memberIndex]++;
+
+        counter++;
+        if (counter % 4 == 0 || counter == 19) {
+            winners.add(answer2);
+            results[memberIndex]++;
+        }
     }
 
     public int getWinnerIndex() {
+        Log.d("TEST_TAG", "COUNTER = " + counter);
         int maxIndex = 0;
         for (int i = 1; i < results.length; i++) {
             if (results[maxIndex] < results[i]) {

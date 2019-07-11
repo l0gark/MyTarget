@@ -25,12 +25,11 @@
     </string-array>
 
     <string name="help_answer_text">
-        Выберите любое поле, запишите ответ и нажмите галочку \nЗаполните все поля и нажмите ГОТОВО</string>
+        Выберите любое поле, запишите ответ и нажмите галочку \n\nЗаполните все поля и нажмите ГОТОВО</string>
     <string name="ok">OK</string>
     <string name="compare_question">Какой вариант наиболее важен?</string>
 
-    <string name="target_done">Способность осуществить цель - %1$s</string>
-    <string name="target_not_done">Ваша цель не осуществима вами на %1$s</string>
+    <string name="target_done">Способность осуществить цель - %1$s%%</string>
     <string name="why">Почему?</string>
     <string name="reset">Заново</string>
     <string name="action_money">money</string>

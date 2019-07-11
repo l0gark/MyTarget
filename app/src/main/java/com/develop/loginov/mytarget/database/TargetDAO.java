@@ -18,7 +18,7 @@ public abstract class TargetDAO {
     public abstract Target getTargetByName(final String targetName);
 
     @Query("SELECT * FROM targets WHERE id= :id LIMIT 1")
-    public abstract Target getTargetById(final int id);
+    public abstract Target getTargetById(final long id);
 
     @Query("SELECT * FROM targets")
     public abstract List<Target> getTargets();

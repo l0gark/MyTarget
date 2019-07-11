@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.adapter.TargetAdapter;
+import com.develop.loginov.mytarget.controller.activity.ResultActivity;
 import com.develop.loginov.mytarget.controller.activity.TargetActivity;
 import com.develop.loginov.mytarget.controller.application.App;
 import com.develop.loginov.mytarget.model.Target;
@@ -80,7 +81,7 @@ public class TargetListFragment extends DialogFragment {
         final List<Target> targets = new ArrayList<>();
         final RecyclerView.Adapter adapter = new TargetAdapter(targets, (position, v) -> {
             final Target target = targets.get(position);
-            final Intent intent = new Intent(getContext(), TargetActivity.class);
+            final Intent intent = new Intent(getContext(), ResultActivity.class);
 
             intent.putExtra(TargetActivity.TARGET_ARG, target.getName());
             intent.putExtra(TargetActivity.TARGET_ID_ARG, target.getId());

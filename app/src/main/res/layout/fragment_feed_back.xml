@@ -4,13 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minWidth="350dp"
-    android:minHeight="250dp"
+    android:minHeight="200dp"
     android:orientation="vertical"
     tools:context=".controller.fragment.FeedBackFragment"
     android:layout_marginTop="15dp"
     android:layout_marginStart="@dimen/def_margin"
     android:layout_marginEnd="@dimen/def_margin"
     android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:text="@string/return_connection"
+        android:textSize="@dimen/big_title_text_size"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/gothic"
+        android:padding="@dimen/def_margin"
+        android:layout_margin="@dimen/def_margin"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -57,5 +70,6 @@
         android:id="@+id/fragment_feed_back__send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/send" />
+        android:text="@string/send"
+        android:layout_margin="@dimen/def_margin"/>
 </LinearLayout>

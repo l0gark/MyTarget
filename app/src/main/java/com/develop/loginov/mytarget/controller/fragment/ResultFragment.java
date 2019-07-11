@@ -33,6 +33,7 @@ public class ResultFragment extends Fragment {
         listView = view.findViewById(R.id.fragment_result__list);
     }
 
+
     public void setResults(final String[] objects, final boolean[] boldObjects) {
         if (getContext() == null) {
             return;
