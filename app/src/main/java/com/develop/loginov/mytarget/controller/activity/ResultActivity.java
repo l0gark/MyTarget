@@ -55,15 +55,9 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
         }
 
         int probability = extras.getInt(PROBABILITY_ARG);
-        if (probability > 0) {
-            textResult.setText(getResources().getString(R.string.target_done,
-                                                        Integer.toString(probability)));
-            textResult.setTextColor(getResources().getColor(R.color.turquoise));
-        } else {
-            textResult.setText(getResources().getString(R.string.target_not_done,
-                                                        Integer.toString(-probability)));
-            textResult.setTextColor(getResources().getColor(R.color.blue));
-        }
+        textResult.setText(getResources().getString(R.string.target_done,
+                                                    Integer.toString(probability)));
+        textResult.setTextColor(getResources().getColor(R.color.blue));
         textTarget.setText(target);
 
         findViewById(R.id.activity_result__button_reset).setOnClickListener(v -> {

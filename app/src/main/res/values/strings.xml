@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MIND &amp; SOUL</string>
 
-    <string name="question1">С чем я останусь, если не достигну желаемого?</string>
+    <string name="question1">Что останется в моей жизни, если не достигну желаемого?</string>
     <string name="question2">Что придёт в мою жизнь, когда я достигну желаемого?</string>
     <string name="question3">Что не придёт в мою жизнь, если я не достигну желаемого?</string>
     <string name="question4">Что уйдёт из моей жизни, когда я достигну желаемого?</string>
@@ -14,7 +14,7 @@
     <string name="my_target">Моя цель?</string>
     <string name="answer">Введите ответ</string>
     <string name="done">Готово</string>
-    <string name="help">Помощь?</string>
+    <string name="help">Помощь</string>
 
     <string-array name="answers_sample">
         <item>Будет всё вокруг белое</item>
@@ -25,12 +25,11 @@
     </string-array>
 
     <string name="help_answer_text">
-        Нажмите на элемент списка, измените текст в нём и нажмите на галочку.\n\n
-        Когда введёте все 5 ответов нажмите кнопку \nГОТОВО или НАЗАД</string>
+        Выберите любое поле, запишите ответ и нажмите галочку \nЗаполните все поля и нажмите ГОТОВО</string>
     <string name="ok">OK</string>
-    <string name="compare_question">Сравните между собой два варианта \nЧто для Вас наиболее ценно и важно?</string>
+    <string name="compare_question">Какой вариант наиболее важен?</string>
 
-    <string name="target_done">Ваша цель осуществима вами на %1$s</string>
+    <string name="target_done">Способность осуществить цель - %1$s</string>
     <string name="target_not_done">Ваша цель не осуществима вами на %1$s</string>
     <string name="why">Почему?</string>
     <string name="reset">Заново</string>
@@ -42,15 +41,15 @@
     <string name="question_answer">Вопрос-Ответ</string>
     <string name="quit">Выйти</string>
     <string name="login_sample">l0gark</string>
-    <string name="will_done">Сделаю</string>
-    <string name="not_will_done">Не сделаю</string>
+    <string name="will_done">Достигну</string>
+    <string name="not_will_done">Не достигну</string>
     <string name="date_sample">26.06.2019</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="send">Отправить</string>
-    <string name="your_email">Введите Вашу почту</string>
-    <string name="enter_mail">Введите сообщение</string>
+    <string name="your_email">E-mail</string>
+    <string name="enter_mail">Ваш вопрос</string>
     <string name="my_targets">Мои цели</string>
     <string name="first_text">Это приложение поможет Вам разобраться стоит ли тратить своё время и
         силы на любую цель/задачу</string>
