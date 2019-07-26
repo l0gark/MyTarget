@@ -17,17 +17,30 @@ import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.adapter.AnswerAdapter;
 
 public class QuestionDialogFragment extends DialogFragment {
+    private static final String TYPE_ARG = "TYPE";
 
     private String[] answers;
     private AnswerAdapter adapter;
     private OnDoneClickListener onDoneClickListener;
+    private int resourceId;
 
     public QuestionDialogFragment() {
+    }
+
+    public static QuestionDialogFragment newInstance(final int resourceId) {
+        Bundle args = new Bundle();
+        args.putInt(TYPE_ARG, resourceId);
+        QuestionDialogFragment fragment = new QuestionDialogFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            this.resourceId = getArguments().getInt(TYPE_ARG, 0);
+        }
     }
 
     @Override
@@ -56,8 +69,9 @@ public class QuestionDialogFragment extends DialogFragment {
         listView.setNestedScrollingEnabled(false);
         listView.setHasFixedSize(true);
 
-        buttonHelp.setOnClickListener(v -> new HelpAnswerDialog().show(getChildFragmentManager(),
-                                                                       "Help"));
+        buttonHelp.setOnClickListener(v -> HelpAnswerDialog.newInstance(resourceId).show(
+                getChildFragmentManager(),
+                "Help"));
         buttonDone.setOnClickListener(v -> {
             if (onDoneClickListener != null) {
                 onDoneClickListener.doneClick();
@@ -77,7 +91,11 @@ public class QuestionDialogFragment extends DialogFragment {
         this.answers = answers;
     }
 
-   public interface OnDoneClickListener {
+    public void setResourceId(final int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public interface OnDoneClickListener {
         void doneClick();
     }
 }

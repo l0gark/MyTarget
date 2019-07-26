@@ -85,6 +85,7 @@ public class TargetListFragment extends DialogFragment {
 
             intent.putExtra(TargetActivity.TARGET_ARG, target.getName());
             intent.putExtra(TargetActivity.TARGET_ID_ARG, target.getId());
+            intent.putExtra(ResultActivity.PROBABILITY_ARG, target.getProbability());
 
             startActivity(intent);
             dismiss();

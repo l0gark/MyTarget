@@ -1,14 +1,18 @@
 package com.develop.loginov.mytarget.controller.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.transition.TransitionManager;
@@ -39,6 +43,7 @@ public class TestActivity extends AppCompatActivity {
     private Competition competition;
     private String targetName;
     private long targetId;
+    private AlertDialog cancelDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,8 @@ public class TestActivity extends AppCompatActivity {
 
         cardView1.setOnClickListener(v -> clickAnswer(iterator, transitionContainer, true));
         cardView2.setOnClickListener(v -> clickAnswer(iterator, transitionContainer, false));
+
+        cancelDialog = createDialog();
     }
 
     private void clickAnswer(@NonNull final TestIterator iterator,
@@ -119,23 +126,35 @@ public class TestActivity extends AppCompatActivity {
         final int probability;
         switch (winnerIndex) {
             case 0:
-                probability = 100;
+                probability = 2;
                 break;
             case 1:
+                probability = 4;
+                break;
             case 2:
+                probability = 1;
+                break;
             case 3:
-                probability = 0;
+                probability = 3;
                 break;
             default:
-                probability = 0;
+                probability = 2;
         }
 
         //update Target Data
         new Thread(() -> {
             final TargetDAO targetDAO = App.getInstance().getDataBase().targetDAO();
             final AnswerDAO answerDao = App.getInstance().getDataBase().answerDAO();
-            final Target target = targetDAO.getTargetById(targetId);
-            final List<Answer> answers = answerDao.getAnswersById(targetId);
+            final Target target = targetDAO.getTargetByName(targetName);
+            if (target == null) {
+                Looper.prepare();
+                Toast.makeText(TestActivity.this,
+                               "Что-то пошло не так!",
+                               Toast.LENGTH_SHORT).show();
+                onBackPressed();
+                return;
+            }
+            final List<Answer> answers = answerDao.getAnswersById(target.getId());
             for (final Answer answer : answers) {
                 answer.setSelected(winners.contains(answer.getAnswer()));
                 answerDao.update(answer);
@@ -155,5 +174,21 @@ public class TestActivity extends AppCompatActivity {
         intent.putExtra(ResultActivity.AFTER_TEST_ARG, true);
         finish();
         startActivity(intent);
+    }
+
+    private AlertDialog createDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.test_exit_title).setMessage(R.string.test_exit_message).setPositiveButton(
+                R.string.ok,
+                (dialog, which) -> finish()).setNegativeButton(R.string.cancel, (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        return builder.create();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelDialog.show();
     }
 }

@@ -29,13 +29,10 @@ import com.develop.loginov.mytarget.model.Target;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.Iterator;
-import java.util.List;
-
 public class TargetActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
     public static final String TARGET_ARG = "TARGET";
     public static final String TARGET_ID_ARG = "TARGET_ID";
-    private boolean oldTarget = false;
+    public static final String TARGET_TIME_ARG = "TARGET_TIME";
     private long id = -1;
 
     private EditText editName;
@@ -75,46 +72,42 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
 
         answers = new String[4][5];
         setEnabled(false);
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            final String target = extras.getString(TARGET_ARG, "");
-            final long id = extras.getLong(TARGET_ID_ARG, -1);
-
-            new Thread(() -> {
-                final AnswerDAO answerDAO = App.getInstance().getDataBase().answerDAO();
-                final List<Answer> answersDB = answerDAO.getAnswersById(id);
-                if (answersDB == null || answersDB.size() != 20) {
-                    return;
-                }
-                final Iterator<Answer> iterator = answersDB.iterator();
-                for (int i = 0; i < answers.length; i++) {
-                    boolean done = true;
-                    for (int j = 0; j < answers[i].length && iterator.hasNext(); j++) {
-                        answers[i][j] = iterator.next().getAnswer();
-                        done &= !TextUtils.isEmpty(answers[i][j]);
-                    }
-                    fragments[i].setDone(done);
-                }
-                oldTarget = true;
-                this.id = id;
-            }).start();
-            editName.setText(target);
-            setEnabled(target != null && target.length() != 0);
-        }
 
         for (int i = 0; i < fragments.length; i++) {
             final int x = i;
             fragments[i].setOnClickListener(v -> {
-                dialogFragment.setAnswers(answers[x]);
-                dialogFragment.setOnDoneClickListener(() -> {
-                    boolean done = true;
-                    for (int j = 0; j < answers[x].length; j++) {
-                        done &= !TextUtils.isEmpty(answers[x][j]);
+                if (fragments[x].isEnabled()) {
+                    dialogFragment.setAnswers(answers[x]);
+                    switch (x) {
+                        case 0:
+                            dialogFragment.setResourceId(R.array.hints1);
+                            break;
+                        case 1:
+                            dialogFragment.setResourceId(R.array.hints2);
+                            break;
+                        case 2:
+                            dialogFragment.setResourceId(R.array.hints3);
+                            break;
+                        case 3:
+                            dialogFragment.setResourceId(R.array.hints4);
+                            break;
                     }
-                    fragments[x].setDone(done);
-                });
 
-                dialogFragment.show(getSupportFragmentManager(), "Dialog");
+
+                    dialogFragment.setOnDoneClickListener(() -> {
+                        boolean done = true;
+                        for (int j = 0; j < answers[x].length; j++) {
+                            done &= !TextUtils.isEmpty(answers[x][j]);
+                        }
+                        fragments[x].setDone(done);
+                    });
+
+                    dialogFragment.show(getSupportFragmentManager(), "Dialog");
+                } else {
+                    Toast.makeText(TargetActivity.this,
+                                   "Сначала введите цель!",
+                                   Toast.LENGTH_SHORT).show();
+                }
             });
         }
 
@@ -142,9 +135,11 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
                 }
             }
             final String targetName = editName.getText().toString();
-            saveTarget(targetName, answersTotalData);
+            final long time = System.currentTimeMillis();
+            saveTarget(targetName, time, answersTotalData);
 
             intent.putExtra(TARGET_ARG, targetName);
+            intent.putExtra(TARGET_ID_ARG, id);
             intent.putExtra(TARGET_ID_ARG, id);
             startActivity(intent);
         });
@@ -198,17 +193,14 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
         //TODO menu
     }
 
-    private void saveTarget(@NonNull final String targetName, @NonNull final String[] strAnswers) {
+    private void saveTarget(@NonNull final String targetName, final long time,
+                            @NonNull final String[] strAnswers) {
         new Thread(() -> {
             final TargetDAO targetDAO = App.getInstance().getDataBase().targetDAO();
             final AnswerDAO answerDAO = App.getInstance().getDataBase().answerDAO();
 
-            final Target target = Target.of(targetName, System.currentTimeMillis());
+            final Target target = Target.of(targetName, time);
             //create DAO
-
-            if (oldTarget) {
-                target.setId(id);
-            }
 
             long ownerId = Target.save(target, targetDAO);
             final Answer[] answers = new Answer[strAnswers.length];

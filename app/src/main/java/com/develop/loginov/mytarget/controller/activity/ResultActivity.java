@@ -17,6 +17,7 @@ import com.develop.loginov.mytarget.controller.fragment.FeedBackFragment;
 import com.develop.loginov.mytarget.controller.fragment.ResultFragment;
 import com.develop.loginov.mytarget.controller.fragment.TargetListFragment;
 import com.develop.loginov.mytarget.database.AnswerDAO;
+import com.develop.loginov.mytarget.dialog.HelpAnswerDialog;
 import com.develop.loginov.mytarget.dialog.NavigationMenuDialog;
 import com.develop.loginov.mytarget.model.Answer;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -91,9 +92,28 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
             setSupportActionBar(bottomAppBar);
         }
 
-        int probability = extras.getInt(PROBABILITY_ARG);
-        textResult.setText(getResources().getString(R.string.target_done,
-                                                    Integer.toString(probability)));
+        int winner = extras.getInt(PROBABILITY_ARG);
+        final String result;
+        final int resourceWhy;
+        switch (winner) {
+            case 1:
+                result = getResources().getString(R.string.result01);
+                resourceWhy = R.string.why1;
+                break;
+            case 2:
+                result = getResources().getString(R.string.result02);
+                resourceWhy = R.string.why2;
+                break;
+            case 3:
+                result = getResources().getString(R.string.result03);
+                resourceWhy = R.string.why3;
+                break;
+            default:
+                result = getResources().getString(R.string.result04);
+                resourceWhy = R.string.why4;
+        }
+
+        textResult.setText(result);
         textResult.setTextColor(getResources().getColor(R.color.blue));
         textTarget.setText(target);
 
@@ -104,7 +124,9 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
         });
 
         findViewById(R.id.activity_result__button_why).setOnClickListener(v -> {
-            Toast.makeText(ResultActivity.this, "Потому что !", Toast.LENGTH_SHORT).show();
+            final HelpAnswerDialog dialogFragment = HelpAnswerDialog.newInstance(resourceWhy);
+            dialogFragment.setClearText(true);
+            dialogFragment.show(getSupportFragmentManager(), "TARGET_LIST_TAG");
         });
 
         findViewById(R.id.activity_result__fab_targets).setOnClickListener(v -> {
@@ -134,6 +156,6 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
 
     @Override
     public void clickItem(int itemId) {
-        //TODO menu
+        //TODO navigation menu
     }
 }

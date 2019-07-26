@@ -1,75 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
+    android:gravity="center"
     android:minWidth="350dp"
     android:minHeight="200dp"
     android:orientation="vertical"
-    tools:context=".controller.fragment.FeedBackFragment"
-    android:layout_marginTop="15dp"
-    android:layout_marginStart="@dimen/def_margin"
-    android:layout_marginEnd="@dimen/def_margin"
-    android:gravity="center">
+    app:cardCornerRadius="0dp"
+    app:strokeColor="@color/colorPrimary"
+    app:strokeWidth="5dp"
+    tools:context=".controller.fragment.FeedBackFragment">
 
-    <TextView
+
+    <LinearLayout
+        android:minWidth="350dp"
+        android:minHeight="200dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/def_margin"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/def_margin"
+        android:orientation="vertical">
 
-        android:gravity="center"
-        android:text="@string/return_connection"
-        android:textSize="@dimen/big_title_text_size"
-        android:textColor="@android:color/black"
-        android:fontFamily="@font/gothic"
-        android:padding="@dimen/def_margin"
-        android:layout_margin="@dimen/def_margin"
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/def_margin"
+            android:fontFamily="@font/gothic"
+            android:gravity="center"
+            android:padding="@dimen/def_margin"
+            android:text="@string/return_connection"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/big_title_text_size" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fragment_feed_back__email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/def_margin"
-                android:padding="10dp"
+                android:background="@android:color/white"
                 android:fontFamily="@font/gothic"
 
 
-                android:background="@android:color/white"
                 android:hint="@string/your_email"
                 android:inputType="textEmailAddress"
+                android:padding="10dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/fragment_feed_back__message"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_feed_back__message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_margin="@dimen/def_margin"
+                android:background="@android:color/white"
+                android:fontFamily="@font/gothic"
+
+                android:hint="@string/enter_mail"
+
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_feed_back__send"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_gravity="center"
             android:layout_margin="@dimen/def_margin"
-            android:padding="10dp"
-            android:fontFamily="@font/gothic"
+            android:text="@string/send" />
+    </LinearLayout>
 
-            android:background="@android:color/white"
-
-            android:hint="@string/enter_mail"
-            android:inputType="textMultiLine"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/fragment_feed_back__send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/send"
-        android:layout_margin="@dimen/def_margin"/>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

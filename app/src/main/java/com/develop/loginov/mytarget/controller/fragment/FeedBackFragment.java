@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.develop.loginov.mytarget.R;
 
 public class FeedBackFragment extends DialogFragment {
-    private static final String ORG_EMAIL = "l0gark@ya.ru";
+    private static final String ORG_EMAIL = "mindsoulfeedback@gmail.com";
 
     public static FeedBackFragment newInstance() {
         final Bundle args = new Bundle();

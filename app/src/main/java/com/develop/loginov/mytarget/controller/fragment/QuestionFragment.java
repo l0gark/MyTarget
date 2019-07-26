@@ -3,7 +3,6 @@ package com.develop.loginov.mytarget.controller.fragment;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -20,9 +19,9 @@ import com.develop.loginov.mytarget.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class QuestionFragment extends Fragment {
-
     private FloatingActionButton fab;
     private String question;
+    private boolean enabled;
 
     @Override
     public void onInflate(Context context, AttributeSet attrs, Bundle savedInstanceState) {
@@ -61,9 +60,11 @@ public class QuestionFragment extends Fragment {
     }
 
     public void setEnabled(final boolean enabled) {
-        if (fab != null) {
-            fab.setEnabled(enabled);
-        }
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public void setDone(boolean done){
