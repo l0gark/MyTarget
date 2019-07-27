@@ -11,10 +11,7 @@ import androidx.room.TypeConverters;
 import com.develop.loginov.mytarget.database.LongConverter;
 import com.develop.loginov.mytarget.database.TargetDAO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 @Entity(tableName = "targets")
 @TypeConverters(LongConverter.class)
@@ -22,15 +19,15 @@ public class Target {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;
-    private int probability;
+    private int winner;
     private long time;
 
-    public Target(@NonNull final String name, final int probability, final long time) {
-        if (TextUtils.isEmpty(name) || Math.abs(probability) > 100 || time < 0) {
+    public Target(@NonNull final String name, final int winner, final long time) {
+        if (TextUtils.isEmpty(name) || Math.abs(winner) > 100 || time < 0) {
             throw new IllegalArgumentException("Invalid data for Target");
         }
         this.name = name;
-        this.probability = probability;
+        this.winner = winner;
         this.time = time;
     }
 
@@ -73,12 +70,12 @@ public class Target {
         this.name = name;
     }
 
-    public int getProbability() {
-        return probability;
+    public int getWinner() {
+        return winner;
     }
 
-    public void setProbability(int probability) {
-        this.probability = probability;
+    public void setWinner(int winner) {
+        this.winner = winner;
     }
 
     public long getTime() {

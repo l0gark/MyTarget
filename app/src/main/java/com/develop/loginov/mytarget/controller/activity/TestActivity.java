@@ -1,13 +1,10 @@
 package com.develop.loginov.mytarget.controller.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Looper;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.transition.TransitionManager;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.controller.application.App;
@@ -25,9 +21,7 @@ import com.develop.loginov.mytarget.model.Answer;
 import com.develop.loginov.mytarget.model.Competition;
 import com.develop.loginov.mytarget.model.Target;
 import com.develop.loginov.mytarget.model.TestIterator;
-import com.transitionseverywhere.ChangeText;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +37,7 @@ public class TestActivity extends AppCompatActivity {
     private Competition competition;
     private String targetName;
     private long targetId;
+    private long targetTime;
     private AlertDialog cancelDialog;
 
     @Override
@@ -69,6 +64,7 @@ public class TestActivity extends AppCompatActivity {
         }
         targetName = extras.getString(TargetActivity.TARGET_ARG);
         targetId = extras.getLong(TargetActivity.TARGET_ID_ARG);
+        targetTime = extras.getLong(TargetActivity.TARGET_TIME_ARG);
 
         final TestIterator iterator = new TestIterator(matrix);
         competition = new Competition(matrix.length, iterator.next(), iterator.next());
@@ -123,29 +119,29 @@ public class TestActivity extends AppCompatActivity {
         }
 
         Log.d("TEST_TAG", "winner - " + winnerIndex);
-        final int probability;
+        final int winnerArg;
         switch (winnerIndex) {
             case 0:
-                probability = 2;
+                winnerArg = 2;
                 break;
             case 1:
-                probability = 4;
+                winnerArg = 4;
                 break;
             case 2:
-                probability = 1;
+                winnerArg = 1;
                 break;
             case 3:
-                probability = 3;
+                winnerArg = 3;
                 break;
             default:
-                probability = 2;
+                winnerArg = 2;
         }
 
         //update Target Data
         new Thread(() -> {
             final TargetDAO targetDAO = App.getInstance().getDataBase().targetDAO();
             final AnswerDAO answerDao = App.getInstance().getDataBase().answerDAO();
-            final Target target = targetDAO.getTargetByName(targetName);
+            final Target target = targetDAO.getTargetByName(targetName, targetTime);
             if (target == null) {
                 Looper.prepare();
                 Toast.makeText(TestActivity.this,
@@ -159,7 +155,7 @@ public class TestActivity extends AppCompatActivity {
                 answer.setSelected(winners.contains(answer.getAnswer()));
                 answerDao.update(answer);
             }
-            target.setProbability(probability);
+            target.setWinner(winnerArg);
             targetDAO.update(target);
         }).start();
 
@@ -170,7 +166,7 @@ public class TestActivity extends AppCompatActivity {
             intent.putExtra(ResultActivity.BOLD_ARGS[i], winnerMatrix[i]);
         }
 
-        intent.putExtra(ResultActivity.PROBABILITY_ARG, probability);
+        intent.putExtra(ResultActivity.WINNER_ARG, winnerArg);
         intent.putExtra(ResultActivity.AFTER_TEST_ARG, true);
         finish();
         startActivity(intent);

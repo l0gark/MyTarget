@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.adapter.TargetAdapter;
@@ -85,7 +83,7 @@ public class TargetListFragment extends DialogFragment {
 
             intent.putExtra(TargetActivity.TARGET_ARG, target.getName());
             intent.putExtra(TargetActivity.TARGET_ID_ARG, target.getId());
-            intent.putExtra(ResultActivity.PROBABILITY_ARG, target.getProbability());
+            intent.putExtra(ResultActivity.WINNER_ARG, target.getWinner());
 
             startActivity(intent);
             dismiss();

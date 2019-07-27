@@ -140,7 +140,7 @@ public class TargetActivity extends AppCompatActivity implements NavigationMenuD
 
             intent.putExtra(TARGET_ARG, targetName);
             intent.putExtra(TARGET_ID_ARG, id);
-            intent.putExtra(TARGET_ID_ARG, id);
+            intent.putExtra(TARGET_TIME_ARG, time);
             startActivity(intent);
         });
 

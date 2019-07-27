@@ -5,7 +5,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -72,7 +71,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.ViewHolder
         private void bind(final Target target) {
             textTarget.setText(target.getName());
 
-            if (target.getProbability() > 0) {
+            if (target.getWinner() > 0) {
                 textResult.setText(WILL_DONE);
                 textResult.setTextColor(GREEN);
             } else {

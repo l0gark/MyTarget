@@ -6,10 +6,8 @@ import androidx.fragment.app.DialogFragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.develop.loginov.mytarget.R;
 import com.develop.loginov.mytarget.controller.application.App;
@@ -30,7 +28,7 @@ import static com.develop.loginov.mytarget.controller.activity.TargetActivity.TA
 
 public class ResultActivity extends AppCompatActivity implements NavigationMenuDialog.OnNavigationItemClickListener {
     public static final String[] BOLD_ARGS = {"bold1", "bold2", "bold3", "bold4"};
-    public static final String PROBABILITY_ARG = "probability";
+    public static final String WINNER_ARG = "probability";
     public static final String AFTER_TEST_ARG = "after_test";
 
     @SuppressLint("StringFormatInvalid")
@@ -92,7 +90,7 @@ public class ResultActivity extends AppCompatActivity implements NavigationMenuD
             setSupportActionBar(bottomAppBar);
         }
 
-        int winner = extras.getInt(PROBABILITY_ARG);
+        int winner = extras.getInt(WINNER_ARG);
         final String result;
         final int resourceWhy;
         switch (winner) {

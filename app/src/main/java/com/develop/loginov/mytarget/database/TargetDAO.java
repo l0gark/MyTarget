@@ -20,6 +20,9 @@ public abstract class TargetDAO {
     @Query("SELECT * FROM targets WHERE id= :id LIMIT 1")
     public abstract Target getTargetById(final long id);
 
+    @Query("SELECT * FROM targets WHERE name= :targetName AND time= :time LIMIT 1")
+    public abstract Target getTargetByName(final String targetName, final long time);
+
     @Query("SELECT * FROM targets")
     public abstract List<Target> getTargets();
 
