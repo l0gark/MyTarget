@@ -72,6 +72,7 @@ public class QuestionDialogFragment extends DialogFragment {
         listView.setNestedScrollingEnabled(false);
         listView.setHasFixedSize(true);
 
+        changeText();
         buttonHelp.setOnClickListener(v -> HelpAnswerDialog.newInstance(resourceId).show(
                 getChildFragmentManager(),
                 "Help"));
@@ -94,22 +95,28 @@ public class QuestionDialogFragment extends DialogFragment {
         this.answers = answers;
     }
 
+    private void changeText() {
+        if (textQuestion != null) {
+            switch (resourceId) {
+                case R.array.hints1:
+                    textQuestion.setText(R.string.question1);
+                    break;
+                case R.array.hints2:
+                    textQuestion.setText(R.string.question2);
+                    break;
+                case R.array.hints3:
+                    textQuestion.setText(R.string.question3);
+                    break;
+                case R.array.hints4:
+                    textQuestion.setText(R.string.question4);
+                    break;
+            }
+        }
+    }
+
     public void setResourceId(final int resourceId) {
         this.resourceId = resourceId;
-        switch (resourceId) {
-            case R.array.hints1:
-                textQuestion.setText(R.string.question1);
-                break;
-            case R.array.hints2:
-                textQuestion.setText(R.string.question2);
-                break;
-            case R.array.hints3:
-                textQuestion.setText(R.string.question3);
-                break;
-            case R.array.hints4:
-                textQuestion.setText(R.string.question4);
-                break;
-        }
+        changeText();
     }
 
     public interface OnDoneClickListener {
