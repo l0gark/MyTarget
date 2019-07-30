@@ -70,13 +70,14 @@
         android:textColor="@color/black"
         android:textSize="@dimen/big_title_text_size"
         android:textStyle="bold"
+        android:scrollbars="vertical"
 
         app:layout_constraintBottom_toTopOf="@id/activity_result__vertical_line"
         app:layout_constraintTop_toBottomOf="@id/activity_result__app_name" />
 
     <fragment
         android:id="@+id/activity_result__question1"
-        android:name="com.develop.loginov.mindsoul.controller.fragment.ResultFragment"
+        android:name="com.develop.loginov.mytarget.controller.fragment.ResultFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
 
@@ -93,7 +94,7 @@
 
     <fragment
         android:id="@+id/activity_result__question2"
-        android:name="com.develop.loginov.mindsoul.controller.fragment.ResultFragment"
+        android:name="com.develop.loginov.mytarget.controller.fragment.ResultFragment"
 
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -110,7 +111,7 @@
 
     <fragment
         android:id="@+id/activity_result__question3"
-        android:name="com.develop.loginov.mindsoul.controller.fragment.ResultFragment"
+        android:name="com.develop.loginov.mytarget.controller.fragment.ResultFragment"
 
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -128,7 +129,7 @@
 
     <fragment
         android:id="@+id/activity_result__question4"
-        android:name="com.develop.loginov.mindsoul.controller.fragment.ResultFragment"
+        android:name="com.develop.loginov.mytarget.controller.fragment.ResultFragment"
 
         android:layout_width="0dp"
         android:layout_height="0dp"

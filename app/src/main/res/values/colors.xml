@@ -10,6 +10,7 @@
     <color name="turquoise">#00ECA3</color>
     <color name="green">#0C7E01</color>
     <color name="gray">#8A8A8A</color>
+    <color name="dark_gray">#6B5D5D</color>
     <color name="red">#C70010</color>
     <color name="none">#00FFFFFF</color>
 </resources>

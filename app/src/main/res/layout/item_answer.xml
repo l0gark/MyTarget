@@ -19,10 +19,11 @@
             android:background="@color/color_white"
             android:hint="@string/answer"
             android:imeOptions="flagNoFullscreen"
-            android:inputType="textShortMessage"
+            android:inputType="textMultiLine"
             android:padding="@dimen/def_margin"
             android:fontFamily="@font/gothic"
-
+            android:scrollbars="vertical"
+            android:maxLines="2"
             android:layout_margin="@dimen/def_margin"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />

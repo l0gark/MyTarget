@@ -29,14 +29,15 @@
             android:gravity="center"
             android:padding="@dimen/def_margin"
             android:layout_margin="@dimen/def_margin"
-            android:fontFamily="@font/gothic"
-            />
+            android:fontFamily="@font/gothic" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_target_list__recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/def_margin"
             tools:itemCount="7"
+            android:scrollbars="vertical"
             tools:listitem="@layout/item_target" />
     </LinearLayout>
 

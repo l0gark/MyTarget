@@ -40,6 +40,7 @@
     <string name="quit">Выйти</string>
     <string name="login_sample">l0gark</string>
     <string name="will_done">Достигну</string>
+    <string name="maybe_will_done">Вероятно достигну</string>
     <string name="not_will_done">Не достигну</string>
     <string name="date_sample">26.06.2019</string>
 

@@ -34,13 +34,13 @@
 
         android:fontFamily="@font/gothic"
         android:gravity="center"
+        android:scrollbars="vertical"
         android:text="@string/target_sample"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/big_title_text_size"
+
         android:textStyle="bold"
-
-
         app:layout_constraintTop_toBottomOf="@id/activity_test__app_name"
         app:layout_constraintVertical_chainStyle="packed"
         tools:layout_editor_absoluteX="6dp" />
