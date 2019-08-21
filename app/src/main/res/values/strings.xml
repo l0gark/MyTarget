@@ -1,20 +1,21 @@
 <resources>
     <string name="app_name">MIND &amp; SOUL</string>
 
-    <string name="question1">Что останется в моей жизни, если не достигну желаемого?</string>
-    <string name="question2">Что придёт в мою жизнь, когда я достигну желаемого?</string>
-    <string name="question3">Что не придёт в мою жизнь, если я не достигну желаемого?</string>
-    <string name="question4">Что уйдёт из моей жизни, когда я достигну желаемого?</string>
+    <string name="question1">What will remain in my life if I do NOT attain the desired?</string>
+    <string name="question2">What will come in my life when I attain the desired?</string>
+    <string name="question3">What will not come in my life if I do NOT attain the desired?</string>
+    <string name="question4">What will go away from my life when I attain the desired?</string>
 
-    <string name="attention_answer">Отвечайте на вопросы внимательно!\n
-        <font fgcolor='#FFFF0000'>Это важно!</font></string>
+    <string name="attention_answer">Answer the questions carefully!\n
+        Answers must NOT be repeated\n
+        <font fgcolor='#FFFF0000'>It is important!</font></string>
 
     <string name="target_sample">Хочу купить дом на острове на самом северном в мире!</string>
-    <string name="next">Продолжить</string>
-    <string name="my_target">Моя цель?</string>
-    <string name="answer">Введите ответ</string>
-    <string name="done">Готово</string>
-    <string name="help">Помощь</string>
+    <string name="next">Continue</string>
+    <string name="my_target">My goal?</string>
+    <string name="answer">Fill the answer</string>
+    <string name="done">Ready</string>
+    <string name="help">Help</string>
 
     <string-array name="answers_sample">
         <item>Будет всё вокруг белое</item>
@@ -24,114 +25,118 @@
         <item>И белые медведи!!!</item>
     </string-array>
 
-    <string name="help_answer_text">Заполните все поля и нажмите ГОТОВО \n\nПРИМЕР\n\n</string>
+    <string name="help_answer_text">Fill in the fields and press READY \n\nEXAMPLE\n\n</string>
     <string name="ok">OK</string>
-    <string name="compare_question">Какой вариант наиболее важен?</string>
+    <string name="compare_question">What is more important?</string>
 
-    <string name="target_done">Способность осуществить цель - %1$s%%</string>
-    <string name="why">Почему?</string>
-    <string name="reset">Заново</string>
+    <string name="target_done">Ability to achieve the goal - %1$s%%</string>
+    <string name="why">Why?</string>
+    <string name="reset">Again</string>
     <string name="action_money">money</string>
     <string name="action_profile">profile</string>
     <string name="action_settings">settings</string>
     <string name="action_search">search</string>
-    <string name="return_connection">Обратная связь</string>
-    <string name="question_answer">Вопрос-Ответ</string>
-    <string name="quit">Выйти</string>
+    <string name="return_connection">Feedback</string>
+    <string name="question_answer">Question-Answer</string>
+    <string name="quit">Exit</string>
     <string name="login_sample">l0gark</string>
-    <string name="will_done">Достигну</string>
-    <string name="maybe_will_done">Вероятно достигну</string>
-    <string name="not_will_done">Не достигну</string>
+    <string name="will_done">Will attain</string>
+    <string name="maybe_will_done">Probably attain</string>
+    <string name="not_will_done">Will not attain</string>
     <string name="date_sample">26.06.2019</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="send">Отправить</string>
+    <string name="send">Send</string>
     <string name="your_email">E-mail</string>
-    <string name="enter_mail">Ваш вопрос</string>
-    <string name="my_targets">Мои цели</string>
-    <string name="test_exit_title">Вы хотите закончить тестирование?</string>
-    <string name="test_exit_message">Учтите, что Ваши данные не сохранятся</string>
-    <string name="cancel">Отмена</string>
+    <string name="enter_mail">Your question</string>
+    <string name="my_targets">My goals</string>
+    <string name="test_exit_title">Do you want to end the testing up?</string>
+    <string name="test_exit_message">Notice that your data will not be saved</string>
+    <string name="cancel">Cancel</string>
 
-    <string name="result01">Вам «и так — хорошо». Вам важнее сохранить существующее положение вещей без изменений.</string>
-    <string name="result02">Вы это сделаете. Ресурсы и возможности у Вас есть. Количество выгод перевешивает возможный негатив.</string>
-    <string name="result03">Вы это не сделаете. Существуют более важные проблемы, требующие Вашего внимания и решения.</string>
-    <string name="result04">Вы можете это сделать, но затратите гораздо больше сил и ресурсов, чем ожидаете.</string>
+    <string name="result01">All is good in your life. It’s more important for you to keep the current state of affairs unchanged.</string>
+    <string name="result02">You are going to do it. You have the resources and opportunities. The number of benefits outweighs the possible negative.</string>
+    <string name="result03">You are not going to do it. There are more important issues that need your attention and solution.</string>
+    <string name="result04">You can do it, but you will spend much more effort and resources than you expect.</string>
 
-    <string name="why1">Вероятно вы не достигните задуманной цели, на сегодняшний день вы живёте по принципу «и так хорошо, а лучшее – враг хорошего»</string>
-    <string name="why2">Вы позитивно мотивированны, целеустремленны, ориентированны на улучшение качества своей жизни, вы достигните этого!</string>
-    <string name="why3">Скорее всего вы не достигните цели. Самокритика демотивирует, страхи доводит до апатии и вам свойственно обесценивать результат.</string>
-    <string name="why4">Результат может обойтись слишком дорого, вы в большей степени ориентированы на то, чего лишитесь, чем на возможные выгоды.</string>
+    <string name="why1">You probably won’t achieve your goal, today you live according to the principle “all is good and the best is the enemy of the good”</string>
+    <string name="why2">You are positively motivated, purposeful, focused on improving the quality of your life, you will attain the desired!</string>
+    <string name="why3">Most likely you will not reach the goal. Self-criticism demotivates you, fears leads to apathy and you tend to devalue the result.</string>
+    <string name="why4">The result can be too expensive you are more focused on what you can lose than on possible benefits.</string>
 
-    <string name="first_text">Это приложение поможет Вам разобраться стоит ли тратить своё время и
-        силы на любую цель/задачу</string>
+    <string name="first_text">This application will help you figure out whether it is worth spending your time and
+                 forces for any goal/task</string>
+    <string name="all_answers_toast">Enter all answers</string>
+    <string name="begin_target_toast">Enter the goal first</string>
+    <string name="few_answers"> «%s» - is entered several times</string>
+    <string name="some_wrong">Something went wrong!</string>
 
 
     <string-array name="hints1">
         <item>
-            Если машину не куплю, то: сохраню деньги на другие нужды, останусь «при своих», сохраню отношения с близкими и друзьями,
-            потрачу деньги на отпуск как минимум.
+            If I don’t buy a car then I will save money for other needs. I will maintain relations with relatives and friends,
+                         spend at least vacation money.
         </item>
         <item>
-            Если не приобретете стройную фигуру, то сохраните как минимум свою нынешнюю фигуру, перестанете тратить деньги на фитнесс-клуб,
-            правильные продукты и прочие бесполезные атрибуты «фито-няшки».
-            Сохраните «вкусняшки» и вечеринки с друзьями после 18 часов. Сохраните отношения с мамой, нахваливая её стряпню.
+            If you don’t get a slim figure, then you will at least keep your current shape, stop spending money on a fitness club,
+            the right foods and other unhelpful attributes.
+            Save “goodies” and parties with friends after 6 pm. Keep a relationship with your mom by praising her cooking.
         </item>
         <item>
-            Не выйдя замуж/не женившись Вы: сохраните деньги, отложенные на свадьбу, сэкономите нервы на отношениях с будущей роднёй,
-            сохраните свой привычный образ жизни. Сохраните свой привычный уровень материального обеспечения себя любимого.
+            If you do not get married you will save the money postponed for the wedding, save the nerves in relations with your future relative,
+            save your usual way of life. Keep your usual level of material security for yourself.
         </item>
     </string-array>
 
     <string-array name="hints2">
         <item>
-            Если Вы хотите купить машину, то, как минимум в Вашу жизнь вместе с её покупкой придут:
-            техосмотр,
-            вывоз мамы на дачу, зависть со стороны пешеходного окружения и оплата стоянки или
-            необходимость покупки гаража и штрафы от ГИБДД.
+            If you want to buy a car, then at least in your life along with its purchase will come:
+            inspection
+            shipping your mother to the country, envy from the pedestrian environment and payment for parking or
+            the need to purchase a garage and fines from the traffic police.
         </item>
         <item>
-            Если Вы хотите похудеть к лету, то должны понимать, что вместе со стройной фигурой в вашу жизнь придёт диета,
-            расходы на «правильное» питание, регулярные физические нагрузки и необходимость соблюдать режим дня.
+            If you want to lose weight by the summer, you must understand that along with a slim figure a diet will come into your life,
+            the costs of “proper” nutrition, regular physical activity and the need to observe the daily regimen.
         </item>
         <item>
-            Если Вы решили жениться/выйти замуж, то в вашу жизнь как минимум придёт ответственность за отношения с партнёром,
-            совместный бюджет и ещё регулярные дополнительные расходы, которых раньше не было.
+            If you decide to get married then at least responsibility for relations with a partner will come into your life,
+            joint budget and regular additional expenses that were not there before.
         </item>
     </string-array>
 
     <string-array name="hints3">
         <item>
-            Если Вы не купите машину, то у Вас не будет «геморроя» со штрафами ГИБДД, выездов на природу с близкими, вывозов маму
-            и бабушку «на дачу», зависти друзей, восторженных взглядов противоположного пола, расходов на техосмотр и оплату стоянки,
-            а также возможности путешествовать за рулём и похвастаться своим авто перед всеми.
+            If you do not buy a car then you will not have problems with fines of the traffic police, trips with those you love, and transportation of your mother
+            and grandmother country house, the envy of friends, enthusiastic looks of the opposite sex, the cost of inspection and payment of parking,
+            as well as the opportunity to travel behind the wheel and show off your car in front of everyone.
         </item>
         <item>
-            Если Вы не приобретёте стройную фигуру к лету, то Вы не получите восхищенных взглядов противоположного пола, не сможете хвастаться
-            своими достижениями в «Инсте», «ФБ» и «ВК». Не сможете делиться опытом своих достижений с подругами и друзьями, не встретите «Ту/Того, Которая/Который…»
+            If you don’t get a slim figure by the summer, you will not get the admiring glances of the opposite sex, you will not be able to show off
+            your achievements in Instagram, FaceBook etc. You will not be able to share the experience of your achievements with friends. You will not meet the one you will love”
         </item>
         <item>
-            Если Вы не женитесь/не выйдете замуж, то Вам никто не будет «выносить мозг» относительно Ваших несовершенств, никто Вас утром не разбудит, не будет нового
-            круга общения, не будет рядом близкого, родного человека, не будет угрозы увеличения расходов на содержание детей в перспективе, не будет совместной жизни.
+            If you do not get married then no one will blow your mind regarding your imperfections, no one will wake you up in the morning, there will be no new
+            social circle, there will not be a close family member, there will be no threat of increased costs for the maintenance of children in the future, there will be no life together.
         </item>
     </string-array>
 
     <string-array name="hints4">
         <item>
-            За покупку машины придётся заплатить как минимум свободным временем на уход за ней и её обслуживание. Откуда Вы его возьмёте?
-            Из общения с близкими, друзьями, из времени своего отдыха или хобби? Сами отношения с некоторыми близкими, друзьями и знакомыми
-            могут измениться в худшую сторону или вообще разорваться.
+            Buying a car you lose your free time on car care and maintenance. Where do you get it from?
+            From conversation with relatives, friends, from your vacation time or hobby? Relationships with some loved ones, friends and acquaintances
+            may change for the worse or even break.
         </item>
         <item>
-            За стройную фигуру к лету Вы по любому заплатите «вкусняшками», ленью, отказом от маминой стряпни, что может ухудшить отношения с ней.
-            Кроме того, от еды после 18 часов тоже придётся отказаться. Как следствие — отказаться от вечеринок с друзьями, где это как раз и
-            происходит, что может ухудшить отношения с ними.
+            For a slim figure, by the summer you will pay for it with “sweets”, laziness, refusal from mother’s cooking which can worsen relations with her.
+            In addition, you will also have to refuse food after 6 pm. As a result, refuse parties with friends, where it’s
+            happening which can worsen relationships with them.
         </item>
         <item>
-            Ради женитьбы/замужества возможно придётся в пользу семейного бюджета отказаться от части денег, которые раньше тратили на себя, от общения с друзьями/подругами,
-            которые будут напрягать Вашу «вторую половину».
-            «Препятствия (левый верхний)» или «С чем я останусь, если не достигну своей цели? Чем сердце успокоится?» или
-            «Не были мы ни на какой Таити, нас и здесь неплохо кормят?»
+            For the sake of marriage it may be necessary in the favor of the family budget to abandon part of the money that you spent on yourself in the past, give up communicating with those friends
+            your spouse is not going to like.
+            "Obstacles (upper left)" or "What will I stay with if I do not reach my goal? What will calm my heart down?" or
+            “Were we not in any Tahiti, we are fed well here?”
         </item>
     </string-array>
 
