@@ -37,7 +37,7 @@ public class BoldArrayAdapter extends ArrayAdapter<String> {
 
         switch (boldObjects[position]) {
             case 1:
-                view.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.v_z, 0);
+                view.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 break;
             case 2:
                 view.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.vv_z, 0);
