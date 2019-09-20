@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MIND &amp; SOUL</string>
+    <string name="facebook_app_id">1430893050402268</string>
+    <string name="fb_login_protocol_scheme">fb1430893050402268</string>
 
     <string name="question1">Что останется в моей жизни, если НЕ достигну желаемого?</string>
     <string name="question2">Что придёт в мою жизнь, когда я достигну желаемого?</string>

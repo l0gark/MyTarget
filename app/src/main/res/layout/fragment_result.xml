@@ -8,7 +8,7 @@
 
     android:scrollbars="none"
     android:divider="@android:color/white"
-    android:dividerHeight="2dp"
+    android:dividerHeight="0dp"
     android:orientation="vertical"
     tools:context=".controller.fragment.ResultFragment"
     tools:listitem="@layout/item_text" />

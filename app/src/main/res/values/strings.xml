@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MIND &amp; SOUL</string>
+    <string name="facebook_app_id">1430893050402268</string>
+    <string name="fb_login_protocol_scheme">fb1430893050402268</string>
 
     <string name="question1">What will remain in my life if I do NOT attain the desired?</string>
     <string name="question2">What will come in my life when I attain the desired?</string>

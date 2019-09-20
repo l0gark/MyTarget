@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.develop.ain.mindsoul"
-    android:versionCode="2">
+    android:versionCode="4">
 
     <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.develop.ain.mindsoul.controller.application.App"
@@ -13,6 +14,9 @@
 
         android:roundIcon="@drawable/mini_logo"
         android:theme="@style/AppTheme">
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
         <activity android:name="com.develop.ain.mindsoul.controller.activity.LaunchActivity"></activity>
         <activity
             android:name="com.develop.ain.mindsoul.controller.activity.ResultActivity"
